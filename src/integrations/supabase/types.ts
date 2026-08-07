@@ -14,13 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      dev_leads: {
+        Row: {
+          access_key: string
+          created_at: string
+          deployment: string
+          email: string
+          id: string
+          objective: string
+        }
+        Insert: {
+          access_key?: string
+          created_at?: string
+          deployment: string
+          email: string
+          id?: string
+          objective: string
+        }
+        Update: {
+          access_key?: string
+          created_at?: string
+          deployment?: string
+          email?: string
+          id?: string
+          objective?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_access_key: { Args: never; Returns: string }
     }
     Enums: {
       [_ in never]: never
