@@ -1,24 +1,62 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useCallback } from "react";
+import { SiteNav } from "@/components/infinity/SiteNav";
+import { Hero } from "@/components/infinity/Hero";
+import { VoiceSection } from "@/components/infinity/VoiceSection";
+import { DeviceSection } from "@/components/infinity/DeviceSection";
+import { CapabilitiesSection } from "@/components/infinity/CapabilitiesSection";
+import { CodeSection } from "@/components/infinity/CodeSection";
+import { OnboardingSection } from "@/components/infinity/OnboardingSection";
+import { SiteFooter } from "@/components/infinity/SiteFooter";
+import { useVoiceCommands, type VoiceCommand } from "@/hooks/use-voice-commands";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "InfinityID Labs — Infinity-1 Spatial Node & Camera MCP Servers";
+const DESCRIPTION =
+  "Handheld spatial computing hardware, voice-activated interfaces, and Camera MCP servers that connect live sensory feeds to AI agents.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const runCommand = useCallback((command: VoiceCommand) => {
+    const target = document.getElementById(command.id === "top" ? "top" : command.id);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  const voice = useVoiceCommands(runCommand);
+
+  const toggle = () => (voice.listening ? voice.stop() : voice.start());
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <SiteNav listening={voice.listening} onToggleVoice={toggle} />
+      <main>
+        <Hero />
+        <VoiceSection
+          listening={voice.listening}
+          supported={voice.supported}
+          transcript={voice.transcript}
+          status={voice.status}
+          onToggle={toggle}
+          onSubmitText={voice.handleText}
+        />
+        <DeviceSection />
+        <CapabilitiesSection />
+        <CodeSection />
+        <OnboardingSection />
+      </main>
+      <SiteFooter />
     </div>
   );
 }
