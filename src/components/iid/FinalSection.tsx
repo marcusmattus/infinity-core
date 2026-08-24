@@ -1,17 +1,17 @@
 import { ArrowRight } from "lucide-react";
 import { InfinityMark } from "./InfinityMark";
 
-const links = [
-  { href: "#humanos", label: "HumanOS" },
-  { href: "#layer", label: "Platform" },
-  { href: "#agents", label: "Developers" },
-  { href: "#metatron", label: "Metatron" },
-  { href: "#company", label: "Company" },
+const footerItems = [
+  { label: "HumanOS", href: "#humanos" },
+  { label: "Platform", href: "#layer" },
+  { label: "Developers", href: "#agents" },
+  { label: "Metatron", href: "#metatron" },
+  { label: "Company", href: "#company-overview" },
 ];
 
 export function FinalSection() {
   return (
-    <section id="company" className="relative border-t border-border/60">
+    <section id="company-overview" className="relative border-t border-border/60">
       <div className="mx-auto max-w-6xl px-5 py-24 sm:px-6 sm:py-32">
         <div className="relative overflow-hidden rounded-[2rem] border border-border bg-surface/35 px-6 py-14 text-center sm:px-10">
           <div className="pointer-events-none absolute inset-0 atmos-glow opacity-30" aria-hidden />
@@ -48,14 +48,14 @@ export function FinalSection() {
                 The Human Interface Layer for the Next Computing Era.
               </p>
             </div>
-            <nav className="flex flex-wrap gap-x-6 gap-y-3" aria-label="Footer">
-              {links.map((link) => (
+            <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
+              {footerItems.map((item) => (
                 <a
-                  key={link.href}
-                  href={link.href}
+                  key={item.label}
+                  href={item.href}
                   className="mono-label text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {link.label}
+                  {item.label}
                 </a>
               ))}
             </nav>

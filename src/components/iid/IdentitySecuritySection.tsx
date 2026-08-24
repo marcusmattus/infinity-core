@@ -1,8 +1,24 @@
 const states = [
-  ["Trusted", "Identity and device pair verified."],
-  ["Permission Required", "Context shift detected. Confirm agent scope."],
-  ["Agent Active", "Encrypted actions executing within policy."],
-  ["Access Denied", "Zero-trust boundary blocked unauthorized request."],
+  {
+    name: "Trusted",
+    detail: "Identity and device pair verified.",
+    tone: "bg-emerald-400",
+  },
+  {
+    name: "Permission Required",
+    detail: "Context shift detected. Confirm agent scope.",
+    tone: "bg-amber-400",
+  },
+  {
+    name: "Agent Active",
+    detail: "Encrypted actions executing within policy.",
+    tone: "bg-primary",
+  },
+  {
+    name: "Access Denied",
+    detail: "Zero-trust boundary blocked unauthorized request.",
+    tone: "bg-red-400",
+  },
 ];
 
 export function IdentitySecuritySection() {
@@ -29,13 +45,13 @@ export function IdentitySecuritySection() {
           </div>
 
           <div className="overflow-hidden rounded-3xl border border-border bg-surface/35">
-            {states.map(([state, detail]) => (
-              <div key={state} className="border-b border-border/70 px-6 py-5 last:border-b-0">
+            {states.map((state) => (
+              <div key={state.name} className="border-b border-border/70 px-6 py-5 last:border-b-0">
                 <div className="flex items-center justify-between gap-4">
-                  <p className="text-sm font-medium">{state}</p>
-                  <span className="size-2 rounded-full bg-primary soft-pulse" />
+                  <p className="text-sm font-medium">{state.name}</p>
+                  <span className={`size-2 rounded-full ${state.tone} soft-pulse`} />
                 </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">{detail}</p>
+                <p className="mt-1.5 text-sm text-muted-foreground">{state.detail}</p>
               </div>
             ))}
           </div>
