@@ -5,18 +5,18 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * InfinityID Labs design system.
- * Dark technical-brutalist: near-black canvas, hairline grid, one electric accent.
- * All colors are oklch semantic tokens — never hardcode colors in components.
+ * InfinityID Labs — "Minimal Human Futurism".
+ * 70% neutral (black / deep navy / white), 20% electric blue → infinity purple,
+ * 10% holographic spatial glow. All colors are semantic oklch tokens.
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 2px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 2px);
-  --radius-xl: calc(var(--radius) + 6px);
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -39,6 +39,7 @@
   --color-ring: var(--ring);
   --color-grid: var(--grid);
   --color-surface: var(--surface);
+  --color-violet: var(--violet);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -55,46 +56,50 @@
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.13 0.008 240);
-  --foreground: oklch(0.96 0.004 240);
-  --surface: oklch(0.17 0.01 240);
-  --card: oklch(0.17 0.01 240);
-  --card-foreground: oklch(0.96 0.004 240);
-  --popover: oklch(0.17 0.01 240);
-  --popover-foreground: oklch(0.96 0.004 240);
-  --primary: oklch(0.86 0.19 165);
-  --primary-foreground: oklch(0.15 0.02 165);
-  --secondary: oklch(0.24 0.012 240);
-  --secondary-foreground: oklch(0.96 0.004 240);
-  --muted: oklch(0.22 0.01 240);
-  --muted-foreground: oklch(0.66 0.015 240);
-  --accent: oklch(0.86 0.19 165);
-  --accent-foreground: oklch(0.15 0.02 165);
-  --destructive: oklch(0.64 0.21 25);
-  --destructive-foreground: oklch(0.97 0.01 25);
-  --border: oklch(0.3 0.012 240);
-  --grid: oklch(0.24 0.012 240);
-  --input: oklch(0.3 0.012 240);
-  --ring: oklch(0.86 0.19 165);
-  --chart-1: oklch(0.86 0.19 165);
-  --chart-2: oklch(0.7 0.14 220);
-  --chart-3: oklch(0.8 0.15 90);
-  --chart-4: oklch(0.6 0.16 300);
-  --chart-5: oklch(0.7 0.18 30);
-  --sidebar: oklch(0.15 0.01 240);
-  --sidebar-foreground: oklch(0.96 0.004 240);
-  --sidebar-primary: oklch(0.86 0.19 165);
-  --sidebar-primary-foreground: oklch(0.15 0.02 165);
-  --sidebar-accent: oklch(0.22 0.01 240);
-  --sidebar-accent-foreground: oklch(0.96 0.004 240);
-  --sidebar-border: oklch(0.3 0.012 240);
-  --sidebar-ring: oklch(0.86 0.19 165);
+  --radius: 1.25rem;
+  --background: oklch(0.13 0.018 268);
+  --foreground: oklch(0.97 0.004 268);
+  --surface: oklch(0.17 0.022 268);
+  --card: oklch(0.17 0.022 268);
+  --card-foreground: oklch(0.97 0.004 268);
+  --popover: oklch(0.17 0.022 268);
+  --popover-foreground: oklch(0.97 0.004 268);
+  --primary: oklch(0.6 0.2 262);
+  --primary-foreground: oklch(0.98 0.005 268);
+  --violet: oklch(0.47 0.27 291);
+  --secondary: oklch(0.24 0.024 268);
+  --secondary-foreground: oklch(0.97 0.004 268);
+  --muted: oklch(0.22 0.02 268);
+  --muted-foreground: oklch(0.68 0.02 268);
+  --accent: oklch(0.47 0.27 291);
+  --accent-foreground: oklch(0.98 0.005 268);
+  --destructive: oklch(0.62 0.21 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --border: oklch(0.28 0.025 268);
+  --grid: oklch(0.22 0.02 268);
+  --input: oklch(0.28 0.025 268);
+  --ring: oklch(0.6 0.2 262);
+  --chart-1: oklch(0.6 0.2 262);
+  --chart-2: oklch(0.47 0.27 291);
+  --chart-3: oklch(0.75 0.12 220);
+  --chart-4: oklch(0.68 0.16 300);
+  --chart-5: oklch(0.85 0.05 268);
+  --sidebar: oklch(0.15 0.02 268);
+  --sidebar-foreground: oklch(0.97 0.004 268);
+  --sidebar-primary: oklch(0.6 0.2 262);
+  --sidebar-primary-foreground: oklch(0.98 0.005 268);
+  --sidebar-accent: oklch(0.22 0.02 268);
+  --sidebar-accent-foreground: oklch(0.97 0.004 268);
+  --sidebar-border: oklch(0.28 0.025 268);
+  --sidebar-ring: oklch(0.6 0.2 262);
+
+  --gradient-infinity: linear-gradient(120deg, var(--primary), var(--violet));
+  --shadow-lift: 0 24px 70px -30px color-mix(in oklab, var(--primary) 55%, transparent);
 }
 
 .dark {
-  --background: oklch(0.13 0.008 240);
-  --foreground: oklch(0.96 0.004 240);
+  --background: oklch(0.13 0.018 268);
+  --foreground: oklch(0.97 0.004 268);
 }
 
 @layer base {
@@ -114,51 +119,131 @@
   }
 
   ::selection {
-    background-color: var(--color-primary);
-    color: var(--color-primary-foreground);
+    background-color: color-mix(in oklab, var(--color-primary) 45%, transparent);
+    color: var(--color-foreground);
   }
 }
 
-@utility blueprint-grid {
+@utility spatial-grid {
   background-image:
     linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
-  background-size: 64px 64px;
+  background-size: 88px 88px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black, transparent 78%);
 }
 
-@utility hairline {
-  border: 1px solid var(--color-border);
+@utility glass {
+  background: color-mix(in oklab, var(--color-surface) 55%, transparent);
+  backdrop-filter: blur(18px);
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 9%, transparent);
 }
 
-@utility label-mono {
+@utility mono-label {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
-@keyframes marquee-x {
-  from {
-    transform: translateX(0);
+@utility gradient-text {
+  background-image: var(--gradient-infinity);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility gradient-fill {
+  background-image: var(--gradient-infinity);
+}
+
+@utility atmos-glow {
+  background: radial-gradient(
+      42% 44% at 32% 42%,
+      color-mix(in oklab, var(--color-primary) 40%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      44% 46% at 68% 58%,
+      color-mix(in oklab, var(--color-violet) 38%, transparent),
+      transparent 72%
+    );
+  filter: blur(50px);
+}
+
+@keyframes drift-y {
+  0%,
+  100% {
+    transform: translateY(-8px);
   }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@utility float-slow {
+  animation: drift-y 9s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
   to {
-    transform: translateX(-50%);
+    transform: rotate(360deg);
   }
 }
 
-@utility marquee-track {
-  animation: marquee-x 28s linear infinite;
+@utility orbit-slow {
+  animation: spin-slow 26s linear infinite;
 }
 
-@keyframes pulse-ring {
+@utility orbit-rev {
+  animation: spin-slow 38s linear infinite reverse;
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+@utility path-flow {
+  stroke-dasharray: 6 10;
+  animation: dash-flow 24s linear infinite;
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@utility soft-pulse {
+  animation: soft-pulse 3.6s ease-in-out infinite;
+}
+
+@keyframes ring-out {
   0% {
-    box-shadow: 0 0 0 0 color-mix(in oklch, var(--color-primary) 45%, transparent);
+    opacity: 0.7;
+    transform: scale(0.72);
   }
   100% {
-    box-shadow: 0 0 0 18px transparent;
+    opacity: 0;
+    transform: scale(1.5);
   }
 }
 
-@utility listening-ring {
-  animation: pulse-ring 1.4s ease-out infinite;
+@utility ring-out {
+  animation: ring-out 2.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
