@@ -1,18 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback } from "react";
-import { SiteNav } from "@/components/infinity/SiteNav";
-import { Hero } from "@/components/infinity/Hero";
-import { VoiceSection } from "@/components/infinity/VoiceSection";
-import { DeviceSection } from "@/components/infinity/DeviceSection";
-import { CapabilitiesSection } from "@/components/infinity/CapabilitiesSection";
-import { CodeSection } from "@/components/infinity/CodeSection";
-import { OnboardingSection } from "@/components/infinity/OnboardingSection";
-import { SiteFooter } from "@/components/infinity/SiteFooter";
-import { useVoiceCommands, type VoiceCommand } from "@/hooks/use-voice-commands";
+import { SiteNav } from "@/components/iid/SiteNav";
+import { Hero } from "@/components/iid/Hero";
+import { ProblemSection } from "@/components/iid/ProblemSection";
+import { LayerSection } from "@/components/iid/LayerSection";
+import { CoreLayers } from "@/components/iid/CoreLayers";
+import { HumanOSSection } from "@/components/iid/HumanOSSection";
+import { AgentsSection } from "@/components/iid/AgentsSection";
+import { MetatronSection } from "@/components/iid/MetatronSection";
+import { IdentitySecuritySection } from "@/components/iid/IdentitySecuritySection";
+import { FinalSection } from "@/components/iid/FinalSection";
 
-const TITLE = "InfinityID Labs — Infinity-1 Spatial Node & Camera MCP Servers";
+const TITLE = "InfinityID Labs — The Human Interface Layer";
 const DESCRIPTION =
-  "Handheld spatial computing hardware, voice-activated interfaces, and Camera MCP servers that connect live sensory feeds to AI agents.";
+  "InfinityID connects human intelligence, identity, spatial context and AI agents into one secure, seamless computing layer.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,34 +29,20 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const runCommand = useCallback((command: VoiceCommand) => {
-    const target = document.getElementById(command.id === "top" ? "top" : command.id);
-    target?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
-
-  const voice = useVoiceCommands(runCommand);
-
-  const toggle = () => (voice.listening ? voice.stop() : voice.start());
-
   return (
     <div className="min-h-screen bg-background">
-      <SiteNav listening={voice.listening} onToggleVoice={toggle} />
+      <SiteNav />
       <main>
         <Hero />
-        <VoiceSection
-          listening={voice.listening}
-          supported={voice.supported}
-          transcript={voice.transcript}
-          status={voice.status}
-          onToggle={toggle}
-          onSubmitText={voice.handleText}
-        />
-        <DeviceSection />
-        <CapabilitiesSection />
-        <CodeSection />
-        <OnboardingSection />
+        <ProblemSection />
+        <LayerSection />
+        <CoreLayers />
+        <HumanOSSection />
+        <AgentsSection />
+        <MetatronSection />
+        <IdentitySecuritySection />
+        <FinalSection />
       </main>
-      <SiteFooter />
     </div>
   );
 }
