@@ -28,7 +28,12 @@ export function MetatronSection() {
                 <div className="absolute bottom-8 right-8 rounded-xl border border-border bg-background/60 px-3 py-2 text-xs">
                   Context · updated
                 </div>
-                <svg className="absolute inset-0 h-full w-full" viewBox="0 0 430 340" fill="none" aria-hidden>
+                <svg
+                  className="absolute inset-0 h-full w-full"
+                  viewBox="0 0 430 340"
+                  fill="none"
+                  aria-hidden
+                >
                   <path
                     d="M34 126 C140 86 150 210 218 168 C276 132 314 188 395 144"
                     stroke="var(--color-primary)"
