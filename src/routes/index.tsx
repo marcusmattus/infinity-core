@@ -2,17 +2,21 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback } from "react";
 import { SiteNav } from "@/components/infinity/SiteNav";
 import { Hero } from "@/components/infinity/Hero";
-import { VoiceSection } from "@/components/infinity/VoiceSection";
+import { Ticker } from "@/components/infinity/Ticker";
+import { ThesisSection } from "@/components/infinity/ThesisSection";
 import { DeviceSection } from "@/components/infinity/DeviceSection";
-import { CapabilitiesSection } from "@/components/infinity/CapabilitiesSection";
+import { StackSection } from "@/components/infinity/StackSection";
+import { OpenwareSection } from "@/components/infinity/OpenwareSection";
+import { PillarsSection } from "@/components/infinity/PillarsSection";
+import { VoiceSection } from "@/components/infinity/VoiceSection";
 import { CodeSection } from "@/components/infinity/CodeSection";
-import { OnboardingSection } from "@/components/infinity/OnboardingSection";
+import { AccessSection } from "@/components/infinity/AccessSection";
 import { SiteFooter } from "@/components/infinity/SiteFooter";
 import { useVoiceCommands, type VoiceCommand } from "@/hooks/use-voice-commands";
 
-const TITLE = "InfinityID Labs — Infinity-1 Spatial Node & Camera MCP Servers";
+const TITLE = "InfinityID Labs — HoloDock spatial engine & the human interface layer";
 const DESCRIPTION =
-  "Handheld spatial computing hardware, voice-activated interfaces, and Camera MCP servers that connect live sensory feeds to AI agents.";
+  "HoloDock is a pocket-sized optical engine that turns an ordinary phone into a spatial computer — with SpatialOS on the phone, Openware plugins for existing apps, and Camera MCP servers for AI agents.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,12 +34,10 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const runCommand = useCallback((command: VoiceCommand) => {
-    const target = document.getElementById(command.id === "top" ? "top" : command.id);
-    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(command.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
   const voice = useVoiceCommands(runCommand);
-
   const toggle = () => (voice.listening ? voice.stop() : voice.start());
 
   return (
@@ -43,6 +45,12 @@ function Index() {
       <SiteNav listening={voice.listening} onToggleVoice={toggle} />
       <main>
         <Hero />
+        <Ticker />
+        <ThesisSection />
+        <DeviceSection />
+        <StackSection />
+        <OpenwareSection />
+        <PillarsSection />
         <VoiceSection
           listening={voice.listening}
           supported={voice.supported}
@@ -51,10 +59,8 @@ function Index() {
           onToggle={toggle}
           onSubmitText={voice.handleText}
         />
-        <DeviceSection />
-        <CapabilitiesSection />
         <CodeSection />
-        <OnboardingSection />
+        <AccessSection />
       </main>
       <SiteFooter />
     </div>
