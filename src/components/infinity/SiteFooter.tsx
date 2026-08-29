@@ -1,32 +1,86 @@
-import { Infinity as InfinityIcon } from "lucide-react";
+import { InfinityMark, Wordmark } from "./Wordmark";
+
+const columns: Array<{ title: string; items: Array<{ label: string; href: string }> }> = [
+  {
+    title: "Device",
+    items: [
+      { label: "HoloDock", href: "#device" },
+      { label: "Specifications", href: "#device" },
+      { label: "Optical modules", href: "#device" },
+    ],
+  },
+  {
+    title: "Platform",
+    items: [
+      { label: "SpatialOS", href: "#stack" },
+      { label: "Openware", href: "#openware" },
+      { label: "Signal path", href: "#stack" },
+    ],
+  },
+  {
+    title: "Developers",
+    items: [
+      { label: "Camera MCP server", href: "#mcp" },
+      { label: "Spatial SDK", href: "#mcp" },
+      { label: "Request access", href: "#access" },
+    ],
+  },
+  {
+    title: "Company",
+    items: [
+      { label: "Principles", href: "#pillars" },
+      { label: "The gap", href: "#thesis" },
+      { label: "Voice interface", href: "#voice" },
+    ],
+  },
+];
 
 export function SiteFooter() {
   return (
-    <footer className="mx-auto max-w-[1400px] px-4 py-12 sm:px-6">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2">
-          <span className="flex size-7 items-center justify-center border border-primary text-primary">
-            <InfinityIcon className="size-4" />
-          </span>
-          <span className="font-display text-sm font-bold tracking-tight">InfinityID Labs</span>
+    <footer className="relative overflow-hidden">
+      <div className="blueprint-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden />
+
+      <div className="shell relative py-20 sm:py-24">
+        <div className="flex items-start gap-6">
+          <InfinityMark className="h-10 w-20 shrink-0" animated />
+          <h2 className="display-tight max-w-2xl text-[2rem] sm:text-[3rem]">
+            Build the interface between people and intelligent machines.
+          </h2>
         </div>
-        <nav className="flex flex-wrap gap-6" aria-label="Footer">
-          <a href="#why" className="label-mono text-muted-foreground hover:text-primary">
-            Why Us
-          </a>
-          <a href="#device" className="label-mono text-muted-foreground hover:text-primary">
-            Device
-          </a>
-          <a href="#mcp" className="label-mono text-muted-foreground hover:text-primary">
-            MCP SDK
-          </a>
-          <a href="#onboarding" className="label-mono text-muted-foreground hover:text-primary">
-            App
-          </a>
-        </nav>
-        <p className="label-mono text-muted-foreground">
-          © {new Date().getFullYear()} InfinityID Labs
-        </p>
+
+        <div className="mt-20 grid gap-10 border-t border-border pt-12 md:grid-cols-2 lg:grid-cols-5">
+          <div>
+            <Wordmark markClassName="h-5 w-10" />
+            <p className="label-mono mt-6 max-w-[15rem] text-steel">
+              Identity at the centre of computing
+            </p>
+          </div>
+
+          {columns.map((column) => (
+            <nav key={column.title} aria-label={column.title}>
+              <h3 className="text-sm font-semibold tracking-tight text-foreground">
+                {column.title}
+              </h3>
+              <ul className="mt-5 space-y-3">
+                {column.items.map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+
+        <div className="mt-16 flex flex-col gap-3 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="label-mono text-steel">© {new Date().getFullYear()} InfinityID Labs</p>
+          <p className="label-mono text-steel">Human · Intelligence · Security</p>
+        </div>
       </div>
     </footer>
   );

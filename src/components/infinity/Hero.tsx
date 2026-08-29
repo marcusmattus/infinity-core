@@ -1,53 +1,74 @@
-import { ArrowRight, Terminal } from "lucide-react";
+import { ArrowDownRight, ArrowRight } from "lucide-react";
+import { HoloEngine } from "./HoloEngine";
 
-const ticker = [
-  "sensory input fusion",
-  "spatial canvas",
-  "holographic mesh",
-  "camera mcp server",
-  "depth vision",
-  "array microphones",
+const rail: Array<[string, string]> = [
+  ["Form factor", "138 × 52 mm"],
+  ["Optical nodes", "12 · Metatron lattice"],
+  ["Connection", "Single USB-C"],
+  ["Host", "iOS · Android"],
 ];
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden border-b border-border pt-14">
-      <div className="pointer-events-none absolute inset-0 blueprint-grid opacity-40" aria-hidden />
-      <div className="relative mx-auto max-w-[1400px] px-4 pb-16 pt-16 sm:px-6 sm:pb-24 sm:pt-28">
-        <p className="label-mono text-primary">Spatial computing · MCP native</p>
-        <h1 className="mt-6 font-display text-[3.25rem] font-bold leading-[0.9] tracking-[-0.04em] sm:text-[6rem] lg:text-[8.5rem]">
-          beyond the
-          <br />
-          interface
-        </h1>
-        <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          InfinityID Labs builds the handheld spatial node, the camera MCP servers, and the
-          holographic SDKs that let AI agents see, hear, and render in real space.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center gap-3">
-          <a
-            href="#onboarding"
-            className="inline-flex items-center gap-2 bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            Start onboarding <ArrowRight className="size-4" />
-          </a>
-          <a
-            href="#mcp"
-            className="inline-flex items-center gap-2 border border-border px-5 py-3 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
-          >
-            <Terminal className="size-4" /> Read the SDK
-          </a>
-        </div>
-      </div>
+    <section id="top" className="relative overflow-hidden border-b border-border">
+      <div className="blueprint-fade pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+      <div
+        className="atmos-glow pointer-events-none absolute inset-x-0 top-[-10%] h-[78%] opacity-45"
+        aria-hidden
+      />
 
-      <div className="relative flex overflow-hidden border-t border-border py-3">
-        <div className="marquee-track flex shrink-0 gap-8 pr-8">
-          {[...ticker, ...ticker].map((item, index) => (
-            <span key={`${item}-${index}`} className="label-mono whitespace-nowrap text-muted-foreground">
-              {item} <span className="text-primary">·</span>
-            </span>
-          ))}
+      <div className="shell relative pt-28 pb-0 sm:pt-36">
+        <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
+          <div>
+            <p className="label-mono flex items-center gap-3 text-steel">
+              <span className="h-px w-8 bg-electric" />
+              InfinityID Labs — human interface layer
+            </p>
+
+            <h1 className="display-tight mt-8 text-[3.25rem] sm:text-[5.5rem] lg:text-[6.75rem]">
+              The interface
+              <br />
+              leaves the
+              <br />
+              <span className="gradient-text">screen.</span>
+            </h1>
+
+            <p className="mt-9 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+              HoloDock is a pocket-sized optical engine that turns an ordinary phone into a spatial
+              computer. The phone keeps the compute, storage and apps. HoloDock adds the light
+              field, the depth sensing and the space to put things in.
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <a
+                href="#device"
+                className="gradient-fill inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                See the device <ArrowRight className="size-4" />
+              </a>
+              <a
+                href="#access"
+                className="inline-flex items-center gap-2 border border-border-strong px-6 py-3.5 text-sm font-semibold transition-colors hover:border-electric hover:text-electric"
+              >
+                Request developer access <ArrowDownRight className="size-4" />
+              </a>
+            </div>
+          </div>
+
+          <div className="relative">
+            <HoloEngine className="mx-auto w-full max-w-[560px]" />
+          </div>
         </div>
+
+        {/* Structured data rail — the first hard facts, before any prose. */}
+        <dl className="rule-grid mt-16 grid-cols-2 border-t border-border lg:grid-cols-4">
+          {rail.map(([term, value]) => (
+            <div key={term} className="bg-background px-4 py-6 sm:px-6">
+              <dt className="label-mono text-steel">{term}</dt>
+              <dd className="mt-2.5 font-mono text-sm text-foreground">{value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
