@@ -92,6 +92,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      // Tints the browser UI on mobile (Chrome/Android address bar, iOS PWA
+      // status bar) to the same infinity black the page sits on.
+      { name: "theme-color", content: "#04060B" },
+      { name: "application-name", content: "InfinityID Labs" },
+      { name: "apple-mobile-web-app-title", content: "InfinityID" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
     ],
     links: [
       {
@@ -104,7 +112,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      // Tab and home-screen icons. Browsers pick the SVG when they support it
+      // and fall back to the .ico (16/32/48) otherwise; iOS uses the
+      // apple-touch-icon, Android reads the sizes out of the manifest.
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "mask-icon", href: "/mask-icon.svg", color: "#2E73FC" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
   }),
   shellComponent: RootShell,
