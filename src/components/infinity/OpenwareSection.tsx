@@ -58,7 +58,7 @@ export function OpenwareSection() {
       <div className="shell py-20 sm:py-28">
         <Reveal>
           <SectionHeader
-            index="04"
+            index="05"
             eyebrow="Openware"
             title={
               <>

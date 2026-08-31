@@ -39,7 +39,7 @@ export function VoiceSection({
       <div className="shell py-20 sm:py-28">
         <Reveal>
           <SectionHeader
-            index="06"
+            index="10"
             eyebrow="Human input"
             title={
               <>

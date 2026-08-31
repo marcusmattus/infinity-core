@@ -47,7 +47,7 @@ export function PillarsSection() {
       <div className="shell relative py-20 sm:py-28">
         <Reveal>
           <SectionHeader
-            index="05"
+            index="09"
             eyebrow="Principles"
             title={
               <>
