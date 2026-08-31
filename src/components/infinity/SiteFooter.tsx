@@ -5,6 +5,7 @@ const columns: Array<{ title: string; items: Array<{ label: string; href: string
     title: "Device",
     items: [
       { label: "HoloDock", href: "#device" },
+      { label: "Interactive teardown", href: "/holodock" },
       { label: "Specifications", href: "#device" },
       { label: "Optical modules", href: "#device" },
     ],
@@ -35,7 +36,12 @@ const columns: Array<{ title: string; items: Array<{ label: string; href: string
   },
 ];
 
-export function SiteFooter() {
+/**
+ * `base` prefixes the in-page anchors so the footer also works from routes
+ * other than the index — pass "/" there, leave it empty on the index itself so
+ * the links stay same-page scrolls.
+ */
+export function SiteFooter({ base = "" }: { base?: string }) {
   return (
     <footer className="relative overflow-hidden">
       <div className="blueprint-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden />
@@ -65,7 +71,7 @@ export function SiteFooter() {
                 {column.items.map((item) => (
                   <li key={item.label}>
                     <a
-                      href={item.href}
+                      href={item.href.startsWith("/") ? item.href : `${base}${item.href}`}
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {item.label}
