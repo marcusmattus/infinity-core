@@ -1,0 +1,24 @@
+<!--
+  InfinityID Labs tab icon. Drawn a touch bolder and tighter than the on-page
+  InfinityMark so the lemniscate still reads at 16px; the .ico frames in
+  favicon.ico are rasterised from this exact geometry.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="InfinityID Labs">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B0F1A"/>
+      <stop offset="1" stop-color="#04060B"/>
+    </linearGradient>
+    <!-- Resolved in the path's own 100x48 space, since the group below is scaled. -->
+    <linearGradient id="mark" x1="8" y1="6" x2="92" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2E73FC"/>
+      <stop offset="1" stop-color="#610AE1"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#tile)"/>
+  <g transform="translate(3.3 128.4) scale(4.85)">
+    <path
+      d="M50 24c-7.4-11.6-13.6-17.4-22.6-17.4C18.4 6.6 11 14.4 11 24s7.4 17.4 16.4 17.4c9 0 15.2-5.8 22.6-17.4 7.4-11.6 13.6-17.4 22.6-17.4C81.6 6.6 89 14.4 89 24s-7.4 17.4-16.4 17.4c-9 0-15.2-5.8-22.6-17.4Z"
+      fill="none" stroke="url(#mark)" stroke-width="9" stroke-linecap="round"/>
+  </g>
+</svg>
