@@ -159,6 +159,14 @@ export function DeviceSection() {
             </p>
           </div>
 
+          <a
+            href="/holodock"
+            className="label-mono mt-8 inline-flex items-center gap-2 border border-border px-4 py-3 text-steel transition-colors hover:border-electric hover:text-electric"
+          >
+            Explore the device from the inside
+            <span aria-hidden>→</span>
+          </a>
+
           <ol className="mt-9 grid gap-px bg-border lg:grid-cols-3">
             {steps.map((step) => (
               <li key={step.id} className="bg-background p-6 sm:p-8">
