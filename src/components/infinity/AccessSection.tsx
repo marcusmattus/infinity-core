@@ -72,7 +72,7 @@ export function AccessSection() {
       <div className="shell py-20 sm:py-28">
         <Reveal>
           <SectionHeader
-            index="08"
+            index="12"
             eyebrow="Developer access"
             title={
               <>

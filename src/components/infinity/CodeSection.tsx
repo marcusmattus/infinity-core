@@ -80,7 +80,7 @@ export function CodeSection() {
       <div className="shell py-20 sm:py-28">
         <Reveal>
           <SectionHeader
-            index="07"
+            index="11"
             eyebrow="Developers"
             title={
               <>

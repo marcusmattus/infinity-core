@@ -18,7 +18,38 @@ export const VOICE_COMMANDS: VoiceCommand[] = [
     id: "stack",
     label: "Show the platform",
     phrase: '"Show the platform"',
-    keywords: ["platform", "layers", "stack", "spatialos", "architecture"],
+    keywords: ["platform", "layers", "stack", "three layers"],
+  },
+  {
+    id: "spatialos",
+    label: "Show SpatialOS",
+    phrase: '"Show SpatialOS"',
+    keywords: [
+      "spatialos",
+      "spatial os",
+      "operating layer",
+      "runtime",
+      "agent kernel",
+      "app bridge",
+    ],
+  },
+  {
+    id: "mcp-gateway",
+    label: "Connect an MCP server",
+    phrase: '"Connect an MCP server"',
+    keywords: ["gateway", "mcp server", "connect server", "tools", "discovery"],
+  },
+  {
+    id: "build",
+    label: "Build a spatial app",
+    phrase: '"Build a spatial app"',
+    keywords: ["build", "onboarding", "first app", "simulator", "install sdk", "publish"],
+  },
+  {
+    id: "dashboard",
+    label: "Open the dashboard",
+    phrase: '"Open the dashboard"',
+    keywords: ["dashboard", "console", "projects", "agent builder", "api keys"],
   },
   {
     id: "openware",
@@ -36,7 +67,7 @@ export const VOICE_COMMANDS: VoiceCommand[] = [
     id: "access",
     label: "Request access",
     phrase: '"Request access"',
-    keywords: ["access", "onboarding", "credentials", "key", "sign up", "start"],
+    keywords: ["access", "credentials", "api key", "sign up", "request access"],
   },
   {
     id: "top",

@@ -4,9 +4,10 @@ import { Wordmark } from "./Wordmark";
 
 const links = [
   { href: "#device", label: "Device" },
-  { href: "#stack", label: "Platform" },
+  { href: "#spatialos", label: "SpatialOS" },
   { href: "#openware", label: "Openware" },
-  { href: "#mcp", label: "Developers" },
+  { href: "#mcp-gateway", label: "MCP" },
+  { href: "#build", label: "Build" },
 ];
 
 export function SiteNav({
@@ -39,7 +40,7 @@ export function SiteNav({
           <Wordmark markClassName="h-4 w-8" />
         </a>
 
-        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {links.map((link) => (
             <a
               key={link.href}
@@ -82,7 +83,7 @@ export function SiteNav({
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="flex items-center justify-center border border-border p-2 text-foreground transition-colors hover:border-border-strong md:hidden"
+            className="flex items-center justify-center border border-border p-2 text-foreground transition-colors hover:border-border-strong lg:hidden"
           >
             {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
@@ -93,7 +94,7 @@ export function SiteNav({
         id="mobile-nav"
         aria-label="Primary, mobile"
         hidden={!menuOpen}
-        className="border-t border-border bg-background md:hidden"
+        className="border-t border-border bg-background lg:hidden"
       >
         <ul className="shell flex flex-col py-2">
           {links.map((link) => (
