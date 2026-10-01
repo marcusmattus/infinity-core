@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ContactShadows, Float, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { HOLODOCK_PARTS, type HoloDockPartId } from "@/lib/holodock-parts";
 import { HoloDockModel } from "./HoloDockModel";
 import { Hologram } from "./Hologram";
@@ -18,6 +19,33 @@ function layerHeight(sceneRef: SceneRef, index: number): number {
 }
 
 type OrbitLike = { target: THREE.Vector3; update: () => void } | null;
+
+/**
+ * Machined metal needs something to reflect. Three's built-in room is generated
+ * on the GPU at mount — no HDR to fetch, nothing to host — and it is what makes
+ * the aluminium read as aluminium rather than as a flat dark shape.
+ */
+function StudioEnvironment() {
+  const gl = useThree((state) => state.gl);
+  const scene = useThree((state) => state.scene);
+
+  useEffect(() => {
+    const generator = new THREE.PMREMGenerator(gl);
+    const room = new RoomEnvironment();
+    const target = generator.fromScene(room, 0.04);
+    scene.environment = target.texture;
+    scene.environmentIntensity = 0.55;
+
+    return () => {
+      scene.environment = null;
+      target.dispose();
+      room.dispose();
+      generator.dispose();
+    };
+  }, [gl, scene]);
+
+  return null;
+}
 
 /**
  * In the scroll sequence the camera is scripted: it pulls back as the stack
@@ -50,7 +78,7 @@ function CameraRig({ sceneRef }: { sceneRef: SceneRef }) {
     // Pull back as the stack opens, and again when the projection comes up.
     // Phones get a wider view, and the device rides above the caption sheet.
     const portrait = state.size.width < 640 ? 1 : 0;
-    const distance = 10.6 + open * 5.4 + act * 2.4 + portrait * 3.4;
+    const distance = 11.6 + open * 4.6 + act * 2.4 + portrait * 3.4;
     const angle = 0.34 + scene.progress * 0.42;
     const height = focusY * 0.3 + 1.4 + open * 0.9 + act * 1.4;
 
@@ -107,7 +135,9 @@ export default function HoloDockStage({
         fov={34}
       />
 
-      <ambientLight intensity={0.62} />
+      <StudioEnvironment />
+
+      <ambientLight intensity={0.42} />
       <directionalLight position={[5, 9, 5]} intensity={2.1} color="#f2f6ff" />
       <directionalLight position={[-6, 4, 6]} intensity={1.25} color="#dde6f7" />
       <pointLight position={[-5, 3, 4]} intensity={8} color="#1677FF" />

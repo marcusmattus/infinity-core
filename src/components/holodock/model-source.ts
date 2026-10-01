@@ -1,10 +1,10 @@
 /**
  * Where the device model comes from.
  *
- * Today the stack is procedural geometry built in `HoloDockGeometry.tsx`. When
- * the CAD export lands at `GLB_URL` with the ten meshes named as
- * `HOLODOCK_PARTS[].mesh`, flip `USE_GLB` and the same layers, sequence, camera
- * and copy drive the real product instead. See `public/models/README.md`.
+ * `USE_GLB` loads the generated product model at `GLB_URL` — ten named layers,
+ * built by `npm run model:build` (see `public/models/README.md`). Turning it off
+ * falls back to the procedural stand-in geometry in `HoloDockGeometry.tsx`,
+ * which is also what a CAD export would replace.
  */
 export const GLB_URL = "/models/holodock.glb";
-export const USE_GLB = false;
+export const USE_GLB = true;
