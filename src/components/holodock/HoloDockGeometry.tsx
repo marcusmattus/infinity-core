@@ -6,10 +6,11 @@ import type { HoloDockPartId } from "@/lib/holodock-parts";
 /**
  * Procedural stand-in geometry for the ten HoloDock layers.
  *
- * It is deliberately schematic — the real product model drops in at
- * `/public/models/holodock.glb` (see the README there), keyed by the same mesh
- * names. Every layer is built around the same 3.2 × 2.4 footprint so the stack
- * reads as one machined object rather than ten unrelated props.
+ * The explorer renders the product model at `/models/holodock.glb` by default;
+ * this is the fallback behind `USE_GLB` in `model-source.ts`, and what draws if
+ * that file is ever unavailable. Every layer is built around the same 3.2 × 2.4
+ * footprint so the stack reads as one machined object rather than ten unrelated
+ * props.
  */
 
 const W = 3.2;

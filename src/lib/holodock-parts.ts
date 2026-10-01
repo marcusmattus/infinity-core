@@ -43,7 +43,7 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "Precision-machined aluminium enclosure over the optical and electronic stack. Carries the touch button and the status indicator, and nothing else — no data, no logic.",
     capabilities: ["Aluminium shell", "Touch button", "Status indicator"],
-    assembled: 0.62,
+    assembled: 0.44,
     exploded: 3.2,
   },
   {
@@ -55,8 +55,8 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "The optical engine. It focuses light from the micro display into the projection volume and holds calibration against the dock's own thermal drift.",
     capabilities: ["Focus stack", "Projection calibration", "Sapphire front element"],
-    assembled: 0.48,
-    exploded: 1.8,
+    assembled: 0.26,
+    exploded: 2.5,
   },
   {
     id: "combiner",
@@ -67,8 +67,8 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "Folds the optical paths into one and steers the result into the display pyramid above the phone. This is the part that makes the image appear to float.",
     capabilities: ["Path combination", "Beam steering", "Pyramid geometry"],
-    assembled: 0.34,
-    exploded: 2.5,
+    assembled: 0.18,
+    exploded: 1.8,
   },
   {
     id: "display",
@@ -79,7 +79,7 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "A high-brightness micro-OLED panel, the primary image source. Every frame SpatialOS composes on the phone lands here before it becomes light in the room.",
     capabilities: ["Micro-OLED", "60 fps light field", "High brightness"],
-    assembled: 0.2,
+    assembled: 0.1,
     exploded: 1.1,
   },
   {
@@ -91,7 +91,7 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "LiDAR and stereo depth, meshing the surfaces and objects around the dock so anchors hold where you put them.",
     capabilities: ["LiDAR", "0.2–4 m depth", "30 Hz environment mesh"],
-    assembled: 0.06,
+    assembled: 0.02,
     exploded: 0.45,
   },
   {
@@ -103,7 +103,7 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "Stereo RGB for SLAM, hand tracking and interaction detection. It is what lets a gesture in the air resolve to a target in the scene.",
     capabilities: ["Stereo RGB", "120° FOV", "Hand and pointer tracking"],
-    assembled: -0.08,
+    assembled: -0.06,
     exploded: -0.25,
   },
   {
@@ -115,7 +115,7 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "The on-module NPU. It runs local inference and the device half of the Agent Kernel, so a tool call does not need to round-trip to the cloud to move something in the room.",
     capabilities: ["On-module NPU", "Local inference", "Device orchestration"],
-    assembled: -0.22,
+    assembled: -0.14,
     exploded: -0.95,
   },
   {
@@ -127,7 +127,7 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "Graphene spreader and fin stack. Optical calibration drifts with temperature, so holding the thermal envelope is what keeps a long session sharp.",
     capabilities: ["Graphene spreader", "Passive fin stack", "Sustained-session envelope"],
-    assembled: -0.36,
+    assembled: -0.22,
     exploded: -1.65,
   },
   {
@@ -139,7 +139,7 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "USB-C PD negotiation and internal delivery, with an optional cell for untethered bursts. One cable does power and data both ways.",
     capabilities: ["USB-C PD", "Power delivery", "Optional cell"],
-    assembled: -0.5,
+    assembled: -0.3,
     exploded: -2.35,
   },
   {
@@ -151,7 +151,7 @@ export const HOLODOCK_PARTS: HoloDockPart[] = [
     description:
       "Structural base, mounting points and the anti-slip face that sits against the phone. The mechanical ground the other nine layers reference.",
     capabilities: ["Structural base", "Anti-slip face", "Mounting points"],
-    assembled: -0.64,
+    assembled: -0.46,
     exploded: -3.05,
   },
 ];

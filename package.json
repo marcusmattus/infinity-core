@@ -9,6 +9,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
+    "model:build": "node --experimental-strip-types scripts/build-holodock-glb.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {
