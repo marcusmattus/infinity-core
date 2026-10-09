@@ -51,6 +51,7 @@ export function AccessSection() {
   const [deployment, setDeployment] = useState<Deployment | null>(null);
   const [email, setEmail] = useState("");
   const [accessKey, setAccessKey] = useState<string | null>(null);
+  const [waitlist, setWaitlist] = useState<string>("none");
 
   const submit = useServerFn(submitDevLead);
   const mutation = useMutation({
@@ -58,6 +59,7 @@ export function AccessSection() {
       submit({ data: input }),
     onSuccess: (result) => {
       setAccessKey(result.accessKey);
+      setWaitlist(result.waitlist);
       toast.success("Developer credentials issued");
     },
     onError: () => toast.error("Could not issue credentials. Please try again."),
@@ -196,6 +198,14 @@ export function AccessSection() {
                 <p className="mt-2 font-mono text-sm break-all text-muted-foreground">
                   mcp://dock.local:8080/camera
                 </p>
+
+                {waitlist !== "none" && (
+                  <p className="mt-5 border-t border-border pt-5 text-sm leading-relaxed text-muted-foreground">
+                    {waitlist === "already_confirmed"
+                      ? "You are already on the update list, so nothing else to do."
+                      : "Check your inbox: confirm the address and you will hear when the dev kit, the SDK and the MCP Gateway open up."}
+                  </p>
+                )}
               </div>
             )}
           </aside>

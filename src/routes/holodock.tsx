@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import { Wordmark } from "@/components/infinity/Wordmark";
+import { PageHeader } from "@/components/infinity/PageHeader";
 import { SiteFooter } from "@/components/infinity/SiteFooter";
 import { Reveal } from "@/components/infinity/Reveal";
 import { HoloDockScrollScene } from "@/components/holodock/HoloDockScrollScene";
@@ -52,38 +52,7 @@ const ctas = [
 function HoloDockPage() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
-        <div className="shell flex h-16 items-center justify-between gap-6">
-          <a href="/" aria-label="InfinityID Labs — home">
-            <Wordmark markClassName="h-4 w-8" />
-          </a>
-
-          <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
-            {[
-              ["Device", "/#device"],
-              ["SpatialOS", "/#spatialos"],
-              ["Openware", "/#openware"],
-              ["MCP", "/#mcp-gateway"],
-              ["Build", "/#build"],
-            ].map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                className="label-mono text-steel transition-colors hover:text-foreground"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-
-          <a
-            href="/#access"
-            className="gradient-fill px-4 py-2 text-xs font-semibold tracking-tight text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            Join waitlist
-          </a>
-        </div>
-      </header>
+      <PageHeader />
 
       <main>
         {/* Hero. */}

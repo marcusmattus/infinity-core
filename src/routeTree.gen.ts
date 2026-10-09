@@ -11,6 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HolodockRouteImport } from './routes/holodock'
+import { Route as StudioWaitlistRouteImport } from './routes/studio.waitlist'
+import { Route as WaitlistIndexRouteImport } from './routes/waitlist.index'
+import { Route as WaitlistConfirmedRouteImport } from './routes/waitlist.confirmed'
+import { Route as WaitlistUnsubscribeRouteImport } from './routes/waitlist.unsubscribe'
+import { Route as WaitlistUnsubscribedRouteImport } from './routes/waitlist.unsubscribed'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +27,98 @@ const HolodockRoute = HolodockRouteImport.update({
   path: '/holodock',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudioWaitlistRoute = StudioWaitlistRouteImport.update({
+  id: '/studio/waitlist',
+  path: '/studio/waitlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistIndexRoute = WaitlistIndexRouteImport.update({
+  id: '/waitlist/',
+  path: '/waitlist/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistConfirmedRoute = WaitlistConfirmedRouteImport.update({
+  id: '/waitlist/confirmed',
+  path: '/waitlist/confirmed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistUnsubscribeRoute = WaitlistUnsubscribeRouteImport.update({
+  id: '/waitlist/unsubscribe',
+  path: '/waitlist/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistUnsubscribedRoute = WaitlistUnsubscribedRouteImport.update({
+  id: '/waitlist/unsubscribed',
+  path: '/waitlist/unsubscribed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/holodock': typeof HolodockRoute
+  '/studio/waitlist': typeof StudioWaitlistRoute
+  '/waitlist/confirmed': typeof WaitlistConfirmedRoute
+  '/waitlist/unsubscribe': typeof WaitlistUnsubscribeRoute
+  '/waitlist/unsubscribed': typeof WaitlistUnsubscribedRoute
+  '/waitlist/': typeof WaitlistIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/holodock': typeof HolodockRoute
+  '/studio/waitlist': typeof StudioWaitlistRoute
+  '/waitlist/confirmed': typeof WaitlistConfirmedRoute
+  '/waitlist/unsubscribe': typeof WaitlistUnsubscribeRoute
+  '/waitlist/unsubscribed': typeof WaitlistUnsubscribedRoute
+  '/waitlist': typeof WaitlistIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/holodock': typeof HolodockRoute
+  '/studio/waitlist': typeof StudioWaitlistRoute
+  '/waitlist/confirmed': typeof WaitlistConfirmedRoute
+  '/waitlist/unsubscribe': typeof WaitlistUnsubscribeRoute
+  '/waitlist/unsubscribed': typeof WaitlistUnsubscribedRoute
+  '/waitlist/': typeof WaitlistIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/holodock'
+  fullPaths:
+    | '/'
+    | '/holodock'
+    | '/studio/waitlist'
+    | '/waitlist/confirmed'
+    | '/waitlist/unsubscribe'
+    | '/waitlist/unsubscribed'
+    | '/waitlist/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/holodock'
-  id: '__root__' | '/' | '/holodock'
+  to:
+    | '/'
+    | '/holodock'
+    | '/studio/waitlist'
+    | '/waitlist/confirmed'
+    | '/waitlist/unsubscribe'
+    | '/waitlist/unsubscribed'
+    | '/waitlist'
+  id:
+    | '__root__'
+    | '/'
+    | '/holodock'
+    | '/studio/waitlist'
+    | '/waitlist/confirmed'
+    | '/waitlist/unsubscribe'
+    | '/waitlist/unsubscribed'
+    | '/waitlist/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HolodockRoute: typeof HolodockRoute
+  StudioWaitlistRoute: typeof StudioWaitlistRoute
+  WaitlistConfirmedRoute: typeof WaitlistConfirmedRoute
+  WaitlistUnsubscribeRoute: typeof WaitlistUnsubscribeRoute
+  WaitlistUnsubscribedRoute: typeof WaitlistUnsubscribedRoute
+  WaitlistIndexRoute: typeof WaitlistIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +137,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HolodockRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/studio/waitlist': {
+      id: '/studio/waitlist'
+      path: '/studio/waitlist'
+      fullPath: '/studio/waitlist'
+      preLoaderRoute: typeof StudioWaitlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/': {
+      id: '/waitlist/'
+      path: '/waitlist'
+      fullPath: '/waitlist/'
+      preLoaderRoute: typeof WaitlistIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/confirmed': {
+      id: '/waitlist/confirmed'
+      path: '/waitlist/confirmed'
+      fullPath: '/waitlist/confirmed'
+      preLoaderRoute: typeof WaitlistConfirmedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/unsubscribe': {
+      id: '/waitlist/unsubscribe'
+      path: '/waitlist/unsubscribe'
+      fullPath: '/waitlist/unsubscribe'
+      preLoaderRoute: typeof WaitlistUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/unsubscribed': {
+      id: '/waitlist/unsubscribed'
+      path: '/waitlist/unsubscribed'
+      fullPath: '/waitlist/unsubscribed'
+      preLoaderRoute: typeof WaitlistUnsubscribedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HolodockRoute: HolodockRoute,
+  StudioWaitlistRoute: StudioWaitlistRoute,
+  WaitlistConfirmedRoute: WaitlistConfirmedRoute,
+  WaitlistUnsubscribeRoute: WaitlistUnsubscribeRoute,
+  WaitlistUnsubscribedRoute: WaitlistUnsubscribedRoute,
+  WaitlistIndexRoute: WaitlistIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
