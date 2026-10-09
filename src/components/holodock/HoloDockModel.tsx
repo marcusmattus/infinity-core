@@ -2,7 +2,7 @@ import { Suspense, lazy, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { HOLODOCK_PARTS, type HoloDockPartId } from "@/lib/holodock-parts";
-import { PartGeometry } from "./HoloDockGeometry";
+import { FocusedPart } from "./geometry";
 import { USE_GLB } from "./model-source";
 import { partProgress } from "./sequence";
 import type { SceneRef } from "./scene";
@@ -11,7 +11,7 @@ import type { SceneRef } from "./scene";
 const HoloDockGltf = lazy(() => import("./HoloDockGltf"));
 
 /**
- * The ten layers on their assembly axis.
+ * The twelve layers on their assembly axis.
  *
  * Positions are damped toward a target every frame rather than set from React
  * state, so scrolling stays smooth and a part that is mid-travel when the
@@ -71,7 +71,7 @@ export function HoloDockModel({
                 <HoloDockGltf index={index} focus={focusOf(part.id)} />
               </Suspense>
             ) : (
-              <PartGeometry id={part.id} focus={focusOf(part.id)} />
+              <FocusedPart id={part.id} focus={focusOf(part.id)} />
             )}
           </group>
         );

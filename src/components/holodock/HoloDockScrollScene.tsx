@@ -1,5 +1,5 @@
 import { Suspense, lazy, useCallback, useRef, useState } from "react";
-import { HOLODOCK_PARTS } from "@/lib/holodock-parts";
+import { HOLODOCK_PARTS, PART_COUNT } from "@/lib/holodock-parts";
 import { createSceneState } from "./scene";
 import { partIndexAt, phaseAt, type Phase } from "./sequence";
 import {
@@ -19,7 +19,7 @@ const PHASE_COPY: Record<
 > = {
   assembled: {
     label: "Assembled",
-    title: "One object, ten layers.",
+    title: "One object, twelve groups.",
     body: "52 × 14 mm of machined aluminium with an optical engine, a sensor package and an NPU inside. Keep scrolling and it comes apart along its assembly axis, one layer at a time.",
   },
   apart: {
@@ -30,7 +30,7 @@ const PHASE_COPY: Record<
   reassembling: {
     label: "Reassembling",
     title: "Back together.",
-    body: "The same ten layers, closing along the axis they opened on.",
+    body: "The same twelve groups, closing along the axis they opened on.",
   },
   activating: {
     label: "SpatialOS",
@@ -75,7 +75,7 @@ export function HoloDockScrollScene() {
   const caption = (
     <>
       <p className="label-mono text-electric">
-        {part ? `Layer ${part.number} of 10` : copy?.label}
+        {part ? `Layer ${part.number} of ${PART_COUNT}` : copy?.label}
       </p>
       <h2 className="display-tight mt-4 text-[1.75rem] sm:mt-5 sm:text-[2.75rem]">
         {part ? part.name : copy?.title}
@@ -168,8 +168,8 @@ export function HoloDockScrollScene() {
                 ? "00"
                 : index >= 0
                   ? String(index + 1).padStart(2, "0")
-                  : "10"}{" "}
-              / 10
+                  : String(PART_COUNT)}{" "}
+              / {PART_COUNT}
             </p>
           </div>
         </div>

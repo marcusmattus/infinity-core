@@ -8,7 +8,7 @@ import { HoloDockExplorer } from "@/components/holodock/HoloDockExplorer";
 
 const TITLE = "Explore the HoloDock from the inside — InfinityID Labs";
 const DESCRIPTION =
-  "An interactive teardown of the HoloDock: ten layers on one assembly axis, from the top cover through the optics, sensors and agent processor to the base — then SpatialOS comes up.";
+  "An interactive teardown of the HoloDock: twelve groups on one assembly axis, from the top cover through the optics, sensors and agent processor to the base — then SpatialOS comes up.";
 
 export const Route = createFileRoute("/holodock")({
   head: () => ({
@@ -124,8 +124,8 @@ function HoloDockPage() {
 
               <dl className="mt-14 grid max-w-3xl gap-px bg-border sm:grid-cols-3">
                 {[
-                  ["10", "Addressable layers"],
-                  ["12", "Precision components"],
+                  ["12", "Addressable groups"],
+                  ["7", "Advanced systems"],
                   ["52 × 14 mm", "Machined body"],
                 ].map(([value, term]) => (
                   <div key={term} className="bg-background py-6 pr-6">
@@ -152,8 +152,8 @@ function HoloDockPage() {
                 The hardware is half of it.
               </h2>
               <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                Ten layers put light in the room. What decides what that light shows is the software
-                stack on the phone — and the tools you connect to it.
+                Twelve groups put light in the room. What decides what that light shows is the
+                software stack on the phone — and the tools you connect to it.
               </p>
             </Reveal>
 
