@@ -6,6 +6,7 @@ const columns: Array<{ title: string; items: Array<{ label: string; href: string
     items: [
       { label: "HoloDock", href: "#device" },
       { label: "Interactive teardown", href: "/holodock" },
+      { label: "Reserve HoloDock", href: "https://holodock.infinityidlabs.xyz" },
       { label: "Specifications", href: "#device" },
       { label: "Optical modules", href: "#device" },
     ],
@@ -71,7 +72,7 @@ export function SiteFooter({ base = "" }: { base?: string }) {
                 {column.items.map((item) => (
                   <li key={item.label}>
                     <a
-                      href={item.href.startsWith("/") ? item.href : `${base}${item.href}`}
+                      href={/^(\/|https?:)/.test(item.href) ? item.href : `${base}${item.href}`}
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {item.label}

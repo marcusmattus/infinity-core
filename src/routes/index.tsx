@@ -5,6 +5,7 @@ import { Hero } from "@/components/infinity/Hero";
 import { Ticker } from "@/components/infinity/Ticker";
 import { ThesisSection } from "@/components/infinity/ThesisSection";
 import { DeviceSection } from "@/components/infinity/DeviceSection";
+import { HoloDockLaunchSection } from "@/components/infinity/HoloDockLaunchSection";
 import { StackSection } from "@/components/infinity/StackSection";
 import { SpatialOSSection } from "@/components/infinity/SpatialOSSection";
 import { OpenwareSection } from "@/components/infinity/OpenwareSection";
@@ -52,6 +53,7 @@ function Index() {
         <Ticker />
         <ThesisSection />
         <DeviceSection />
+        <HoloDockLaunchSection />
         <StackSection />
         <SpatialOSSection />
         <OpenwareSection />
