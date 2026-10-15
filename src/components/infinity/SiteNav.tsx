@@ -4,6 +4,7 @@ import { Wordmark } from "./Wordmark";
 
 const links = [
   { href: "#device", label: "Device" },
+  { href: "#holodock", label: "Get HoloDock" },
   { href: "#spatialos", label: "SpatialOS" },
   { href: "#openware", label: "Openware" },
   { href: "#mcp-gateway", label: "MCP" },
