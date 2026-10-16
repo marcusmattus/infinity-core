@@ -55,6 +55,13 @@ export default {
         if (waitlistResponse) return waitlistResponse;
       }
 
+      // Stripe's webhook is likewise a plain POST from outside the app.
+      if (new URL(request.url).pathname === "/api/stripe/webhook") {
+        const { handleStripeRequest } = await import("./lib/presale/http.server");
+        const stripeResponse = await handleStripeRequest(request);
+        if (stripeResponse) return stripeResponse;
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
