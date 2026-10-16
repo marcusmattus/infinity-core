@@ -55,8 +55,9 @@ async function handle(event: StripeEvent): Promise<void> {
       const session = event.data.object as unknown as Session;
       if (session.payment_status !== "paid") return;
       const order = await orderForSession(session);
-      // Unknown order, or Stripe retried an event we have already handled.
-      if (!order || order.status === "paid") return;
+      // Unknown order, an event Stripe retried, or a completion replayed after
+      // a refund: none of these may (re)activate the order.
+      if (!order || order.status === "paid" || order.status === "refunded") return;
 
       const shipping =
         session.collected_information?.shipping_details ?? session.shipping_details ?? null;
@@ -94,12 +95,22 @@ async function handle(event: StripeEvent): Promise<void> {
       const charge = event.data.object as {
         refunded?: boolean;
         payment_intent?: string | { id: string } | null;
+        metadata?: Record<string, string> | null;
       };
       if (!charge.refunded) return; // a partial refund leaves the order as paid
       const intent = idOf(charge.payment_intent);
-      if (!intent) return;
-      const order = await findOrder("stripe_payment_intent_id", intent);
-      if (!order) return;
+      // The intent id is only stored once the completion event is handled, so
+      // a refund that arrives first is matched through the order id instead.
+      const orderId = charge.metadata?.["order_id"];
+      const order =
+        (orderId ? await findOrder("id", orderId) : null) ??
+        (intent ? await findOrder("stripe_payment_intent_id", intent) : null);
+      if (!order) {
+        // One of ours that we cannot match yet: fail so Stripe retries rather
+        // than acknowledging a refund we would never record.
+        if (orderId) throw new Error(`refund for unknown order ${orderId}`);
+        return;
+      }
       await updateOrder(order.id, { status: "refunded" });
       await syncHubSpotContact({ email: order.email, holodock: { deposit_status: "refunded" } });
       return;
