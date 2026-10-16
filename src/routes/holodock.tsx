@@ -1,16 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
+import { z } from "zod";
 import { PageHeader } from "@/components/infinity/PageHeader";
 import { SiteFooter } from "@/components/infinity/SiteFooter";
 import { Reveal } from "@/components/infinity/Reveal";
 import { HoloDockScrollScene } from "@/components/holodock/HoloDockScrollScene";
 import { HoloDockExplorer } from "@/components/holodock/HoloDockExplorer";
+import { PresaleSection } from "@/components/holodock/PresaleSection";
+import { getPresaleConfig } from "@/lib/presale.functions";
+import { formatMoney } from "@/lib/presale/pricing";
 
 const TITLE = "Explore the HoloDock from the inside — InfinityID Labs";
 const DESCRIPTION =
   "An interactive teardown of the HoloDock: twelve groups on one assembly axis, from the top cover through the optics, sensors and agent processor to the base — then SpatialOS comes up.";
 
 export const Route = createFileRoute("/holodock")({
+  validateSearch: z.object({ reservation: z.enum(["cancelled"]).optional() }),
+  loader: () => getPresaleConfig(),
   head: () => ({
     meta: [
       { title: TITLE },
@@ -43,16 +49,22 @@ const systems = [
 ];
 
 const ctas = [
-  { label: "Start building", href: "/#build", primary: true },
+  { label: "Pre-order HoloDock", href: "#presale", primary: true },
+  { label: "Start building", href: "/#build", primary: false },
   { label: "Connect MCP server", href: "/#mcp-gateway", primary: false },
   { label: "Request dev kit", href: "/#access", primary: false },
   { label: "Join waitlist", href: "/#access", primary: false },
 ];
 
 function HoloDockPage() {
+  const config = Route.useLoaderData();
+  const { reservation } = Route.useSearch();
+  const prices = config.editions.flatMap((e) => (e.price ? [e.price] : []));
+  const fromPrice = prices.length ? formatMoney(Math.min(...prices), config.currency) : null;
+
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader />
+      <PageHeader cta={{ label: "Pre-order", href: "#presale" }} />
 
       <main>
         {/* Hero. */}
@@ -83,13 +95,26 @@ function HoloDockPage() {
                 what it sees. Scroll to take the device apart, layer by layer.
               </p>
 
-              <a
-                href="#explorer"
-                className="label-mono mt-8 inline-flex items-center gap-2 border border-border px-4 py-3 text-steel transition-colors hover:border-electric hover:text-electric"
-              >
-                Skip to the interactive explorer
-                <span aria-hidden>→</span>
-              </a>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <a
+                  href="#presale"
+                  className="gradient-fill inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                >
+                  Pre-order HoloDock
+                  <span aria-hidden>→</span>
+                </a>
+                <a
+                  href="#explorer"
+                  className="label-mono inline-flex items-center gap-2 border border-border px-4 py-3.5 text-steel transition-colors hover:border-electric hover:text-electric"
+                >
+                  Open the explorer
+                </a>
+                <span className="label-mono text-steel">
+                  {fromPrice
+                    ? `Presale from ${fromPrice}`
+                    : `Reserve with a ${formatMoney(config.depositAmount, config.currency)} refundable deposit`}
+                </span>
+              </div>
 
               <dl className="mt-14 grid max-w-3xl gap-px bg-border sm:grid-cols-3">
                 {[
@@ -111,6 +136,7 @@ function HoloDockPage() {
 
         <HoloDockScrollScene />
         <HoloDockExplorer />
+        <PresaleSection config={config} cancelled={reservation === "cancelled"} />
 
         {/* Hardware hands off to software. */}
         <section className="border-b border-border">

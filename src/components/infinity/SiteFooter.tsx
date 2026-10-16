@@ -6,6 +6,7 @@ const columns: Array<{ title: string; items: Array<{ label: string; href: string
     items: [
       { label: "HoloDock", href: "#device" },
       { label: "Interactive teardown", href: "/holodock" },
+      { label: "Pre-order HoloDock", href: "/holodock#presale" },
       { label: "Specifications", href: "#device" },
       { label: "Optical modules", href: "#device" },
     ],

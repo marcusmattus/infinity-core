@@ -6,6 +6,7 @@ const LINKS: Array<[string, string]> = [
   ["Openware", "/#openware"],
   ["MCP", "/#mcp-gateway"],
   ["Build", "/#build"],
+  ["Presale", "/holodock#presale"],
 ];
 
 /**
