@@ -36,7 +36,7 @@ export function SiteNav({
       }`}
     >
       <div className="shell flex h-16 items-center justify-between gap-6">
-        <a href="#top" aria-label="InfinityID Labs — back to top">
+        <a href="/" aria-label="InfinityID Labs — home">
           <Wordmark markClassName="h-4 w-8" />
         </a>
 
@@ -72,7 +72,7 @@ export function SiteNav({
 
           <a
             href="#access"
-            className="gradient-fill hidden px-4 py-2 text-xs font-semibold tracking-tight text-primary-foreground transition-opacity hover:opacity-90 sm:inline-flex"
+            className="hidden rounded-full bg-gold px-5 py-2.5 text-[0.8125rem] font-semibold text-void transition-colors hover:bg-gold-light sm:inline-flex"
           >
             Request access
           </a>

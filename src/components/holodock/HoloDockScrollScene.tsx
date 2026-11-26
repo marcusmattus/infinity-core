@@ -100,13 +100,13 @@ export function HoloDockScrollScene() {
       {phase === "activating" && (
         <div className="pointer-events-auto mt-6 flex flex-wrap gap-2 sm:mt-7">
           <a
-            href="/#spatialos"
+            href="/platform#spatialos"
             className="label-mono border border-border bg-background/70 px-4 py-2.5 text-steel backdrop-blur-sm transition-colors hover:border-electric hover:text-electric"
           >
             Open SpatialOS
           </a>
           <a
-            href="/#mcp-gateway"
+            href="/platform#mcp-gateway"
             className="label-mono border border-border bg-background/70 px-4 py-2.5 text-steel backdrop-blur-sm transition-colors hover:border-electric hover:text-electric"
           >
             MCP Gateway

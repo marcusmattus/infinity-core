@@ -149,14 +149,14 @@ export function CalloutOverlay() {
               strokeWidth="1"
               strokeDasharray="2 4"
             />
-            <circle className="anchor" r="2.5" fill="#32C5FF" />
+            <circle className="anchor" r="2.5" fill="#5B8CFF" />
             <g className="label">
               <circle
                 cx="11"
                 cy="0"
                 r="11"
                 fill="rgba(8,13,23,0.9)"
-                stroke={state.selected === part.id ? "#32C5FF" : "rgba(154,166,183,0.4)"}
+                stroke={state.selected === part.id ? "#5B8CFF" : "rgba(163,163,171,0.4)"}
                 strokeWidth="1"
               />
               <text
@@ -165,7 +165,7 @@ export function CalloutOverlay() {
                 textAnchor="middle"
                 fontSize="9.5"
                 fontFamily="ui-monospace, monospace"
-                fill="#9AA6B7"
+                fill="#A3A3AB"
               >
                 {part.number}
               </text>
@@ -175,13 +175,13 @@ export function CalloutOverlay() {
                 fontSize="12"
                 fontWeight="600"
                 fontFamily="ui-sans-serif, system-ui, sans-serif"
-                fill="#F5F7FB"
+                fill="#FAFAF7"
                 className="pointer-events-auto cursor-pointer"
                 onClick={() => select(part.id)}
               >
                 {part.name}
               </text>
-              <text x="30" y="12" fontSize="10" fontFamily="ui-monospace, monospace" fill="#9AA6B7">
+              <text x="30" y="12" fontSize="10" fontFamily="ui-monospace, monospace" fill="#A3A3AB">
                 {part.short}
               </text>
             </g>

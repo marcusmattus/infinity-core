@@ -1,10 +1,16 @@
 import * as THREE from "three";
 
+/*
+ * HoloDock light, in the brand's four-colour system: Blue (#2F6BFF) for the
+ * live light path, Blue light (#5B8CFF) for beams and highlights, Gold
+ * (#E8B84A) for the anchor/agent accents, White for the spark. Gold and blue
+ * are separate emitters — never mixed into one gradient.
+ */
 export const HEX = {
-  /* The logo gradient endpoints, as the rest of the site uses them. */
-  blue: 0x1677ff,
-  cyan: 0x32c5ff,
-  violet: 0x6425f5,
+  blue: 0x2f6bff,
+  cyan: 0x5b8cff,
+  gold: 0xe8b84a,
+  white: 0xfafaf7,
 } as const;
 
 /** Deterministic noise so a board's traces are the same on every reload. */
@@ -36,7 +42,7 @@ function finish(element: HTMLCanvasElement, aniso = 8) {
  * a soldermask. Geometry for this many traces would cost far more than a
  * texture does, and at the distances the camera reaches it reads the same.
  */
-export function pcbTexture(seed: number, substrate = "#0a1a1c", trace = "#1f7a6b") {
+export function pcbTexture(seed: number, substrate = "#0d0d10", trace = "#1b45c9") {
   const SIZE = 512;
   const { element, ctx } = canvas(SIZE);
   const random = rng(seed);
@@ -76,7 +82,7 @@ export function pcbTexture(seed: number, substrate = "#0a1a1c", trace = "#1f7a6b
   for (let i = 0; i < 90; i += 1) {
     const x = random() * SIZE;
     const y = random() * SIZE;
-    ctx.fillStyle = "#c8a24a";
+    ctx.fillStyle = "#e8b84a";
     ctx.beginPath();
     ctx.arc(x, y, 2.6, 0, Math.PI * 2);
     ctx.fill();
@@ -92,7 +98,7 @@ export function pcbTexture(seed: number, substrate = "#0a1a1c", trace = "#1f7a6b
     const y = 30 + random() * (SIZE - 90);
     const w = 14 + random() * 44;
     const h = 10 + random() * 26;
-    ctx.fillStyle = "#cfa94f";
+    ctx.fillStyle = "#f6d98b";
     ctx.fillRect(x, y, 6, h);
     ctx.fillRect(x + w, y, 6, h);
     ctx.strokeStyle = "rgba(226,233,245,0.22)";
@@ -121,10 +127,10 @@ export function displayTexture() {
   const { element, ctx } = canvas(SIZE);
 
   const glow = ctx.createRadialGradient(SIZE / 2, SIZE / 2, 20, SIZE / 2, SIZE / 2, SIZE / 1.7);
-  glow.addColorStop(0, "#dff1ff");
-  glow.addColorStop(0.35, "#5ab9ff");
-  glow.addColorStop(0.75, "#1b5fcc");
-  glow.addColorStop(1, "#050a18");
+  glow.addColorStop(0, "#FAFAF7");
+  glow.addColorStop(0.35, "#5B8CFF");
+  glow.addColorStop(0.75, "#1B45C9");
+  glow.addColorStop(1, "#09090B");
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, SIZE, SIZE);
 
@@ -192,11 +198,11 @@ function textures(): TextureSet {
     grain: brushTexture(),
     display: displayTexture(),
     boards: {
-      sensors: pcbTexture(11, "#0a1a1c", "#1f7a6b"),
-      camera: pcbTexture(23, "#0c1620", "#1d6f87"),
-      processor: pcbTexture(37, "#0b1420", "#2a5f9e"),
-      power: pcbTexture(53, "#141019", "#8a6a2e"),
-      mainpcb: pcbTexture(71, "#07151a", "#2e8f7a"),
+      sensors: pcbTexture(11, "#0d0d10", "#1b45c9"),
+      camera: pcbTexture(23, "#131317", "#1d6f87"),
+      processor: pcbTexture(37, "#131317", "#2a5f9e"),
+      power: pcbTexture(53, "#100e0a", "#b9852a"),
+      mainpcb: pcbTexture(71, "#0B0B0E", "#E8B84A"),
     },
   };
   return textureCache;
@@ -209,7 +215,7 @@ export function createMaterials() {
   // Bead-blasted anodising, not a mirror: high roughness and a restrained
   // environment contribution, or twelve dark layers all read as chrome.
   const shell = new THREE.MeshStandardMaterial({
-    color: 0x0f1319,
+    color: 0x131317,
     metalness: 0.78,
     roughness: 0.62,
     roughnessMap: roughnessGrain,
@@ -217,39 +223,39 @@ export function createMaterials() {
   });
 
   const shellInner = new THREE.MeshStandardMaterial({
-    color: 0x0a0d12,
+    color: 0x09090b,
     metalness: 0.7,
     roughness: 0.72,
     side: THREE.DoubleSide,
   });
 
   const aluminium = new THREE.MeshStandardMaterial({
-    color: 0x5d6572,
+    color: 0x7d7d85,
     metalness: 0.9,
     roughness: 0.45,
     envMapIntensity: 0.7,
   });
 
   const darkMetal = new THREE.MeshStandardMaterial({
-    color: 0x2a3038,
+    color: 0x26262c,
     metalness: 0.9,
     roughness: 0.38,
   });
 
   const copper = new THREE.MeshStandardMaterial({
-    color: 0x8a5a24,
+    color: 0xb9852a,
     metalness: 0.92,
     roughness: 0.42,
   });
 
   const chip = new THREE.MeshStandardMaterial({
-    color: 0x14181e,
+    color: 0x131317,
     metalness: 0.42,
     roughness: 0.58,
   });
 
   const die = new THREE.MeshStandardMaterial({
-    color: 0x1b2a46,
+    color: 0x111a3a,
     metalness: 0.6,
     roughness: 0.25,
     emissive: new THREE.Color(HEX.blue),
@@ -257,13 +263,13 @@ export function createMaterials() {
   });
 
   const rubber = new THREE.MeshStandardMaterial({
-    color: 0x070a0e,
+    color: 0x09090b,
     metalness: 0.02,
     roughness: 0.95,
   });
 
   const glass = new THREE.MeshPhysicalMaterial({
-    color: 0xcfe9ff,
+    color: 0xfafaf7,
     metalness: 0,
     roughness: 0.06,
     transparent: true,
@@ -274,7 +280,7 @@ export function createMaterials() {
   });
 
   const lens = new THREE.MeshPhysicalMaterial({
-    color: 0x9ed4ff,
+    color: 0x5b8cff,
     metalness: 0.1,
     roughness: 0.04,
     transparent: true,
@@ -305,8 +311,8 @@ export function createMaterials() {
     });
 
   const markMaterial = new THREE.MeshStandardMaterial({
-    color: 0x0b1018,
-    emissive: new THREE.Color(0xcfe9ff),
+    color: 0x0b0b0e,
+    emissive: new THREE.Color(0xfafaf7),
     emissiveIntensity: 1.15,
     metalness: 0.4,
     roughness: 0.3,
@@ -373,7 +379,7 @@ export function createMaterials() {
     displayPanel,
     boards,
     cyan: emissive(HEX.cyan),
-    violet: emissive(HEX.violet),
+    gold: emissive(HEX.gold),
     blue: emissive(HEX.blue),
   };
 }

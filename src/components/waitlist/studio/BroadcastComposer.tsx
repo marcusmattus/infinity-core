@@ -240,7 +240,7 @@ export function BroadcastComposer({ token, onSent }: { token: string; onSent: ()
 
       <div className="bg-surface p-6 sm:p-8">
         <p className="label-mono text-steel">Preview</p>
-        <div className="hairline mt-6 bg-[#111725] p-6">
+        <div className="hairline mt-6 bg-[#131317] p-6">
           <p className="label-mono text-electric">InfinityID Labs</p>
           <h3 className="mt-4 font-display text-xl font-semibold tracking-[-0.02em] text-foreground">
             {subject.trim() || "Subject line"}

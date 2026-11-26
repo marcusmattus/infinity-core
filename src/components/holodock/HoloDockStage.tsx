@@ -138,10 +138,10 @@ export default function HoloDockStage({
       <StudioEnvironment />
 
       <ambientLight intensity={0.42} />
-      <directionalLight position={[5, 9, 5]} intensity={2.1} color="#f2f6ff" />
-      <directionalLight position={[-6, 4, 6]} intensity={1.25} color="#dde6f7" />
-      <pointLight position={[-5, 3, 4]} intensity={8} color="#1677FF" />
-      <pointLight position={[4.5, -2.5, -4]} intensity={5} color="#6425F5" />
+      <directionalLight position={[5, 9, 5]} intensity={2.1} color="#FAFAF7" />
+      <directionalLight position={[-6, 4, 6]} intensity={1.25} color="#D9D9DE" />
+      <pointLight position={[-5, 3, 4]} intensity={8} color="#2F6BFF" />
+      <pointLight position={[4.5, -2.5, -4]} intensity={5} color="#E8B84A" />
 
       {mode === "explorer" && !reducedMotion ? (
         <Float speed={1.1} rotationIntensity={0.06} floatIntensity={0.18}>

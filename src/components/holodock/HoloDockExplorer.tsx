@@ -176,7 +176,7 @@ export function HoloDockExplorer() {
 
             <dl className="mt-9 flex gap-10">
               <div>
-                <dt className="font-display text-[2.6rem] font-semibold leading-none tracking-[-0.045em] text-violet">
+                <dt className="font-display text-[2.6rem] font-semibold leading-none tracking-[-0.045em] text-blue-light">
                   {PART_COUNT}
                 </dt>
                 <dd className="label-mono mt-2 text-steel">Precision components</dd>
@@ -196,7 +196,7 @@ export function HoloDockExplorer() {
                 and the InfinityID Agent Kernel.
               </p>
               <a
-                href="/#device"
+                href="/platform#device"
                 className="label-mono mt-4 inline-flex items-center gap-2 text-electric"
               >
                 Learn more about HoloDock <span aria-hidden>→</span>
@@ -420,7 +420,7 @@ function PartList() {
       </ul>
       <div className="shrink-0 border-t border-border px-5 py-4">
         <a
-          href="/#device"
+          href="/platform#device"
           className="label-mono flex items-center justify-between border border-border px-4 py-3 text-steel transition-colors hover:border-electric hover:text-electric"
         >
           See all specifications <span aria-hidden>→</span>

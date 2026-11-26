@@ -55,8 +55,8 @@ export function Hologram({ sceneRef }: { sceneRef: SceneRef }) {
       <mesh ref={pyramid} position={[0, -1.1, 0]} rotation={[Math.PI, Math.PI / 4, 0]}>
         <coneGeometry args={[1.75, 2.3, 4, 1, true]} />
         <meshStandardMaterial
-          color="#4f8dff"
-          emissive="#1677FF"
+          color="#5B8CFF"
+          emissive="#2F6BFF"
           transparent
           opacity={0}
           side={THREE.DoubleSide}
@@ -69,8 +69,8 @@ export function Hologram({ sceneRef }: { sceneRef: SceneRef }) {
         <icosahedronGeometry args={[0.85, 2]} />
         <meshStandardMaterial
           wireframe
-          color="#8fbaff"
-          emissive="#1677FF"
+          color="#5B8CFF"
+          emissive="#2F6BFF"
           transparent
           opacity={0}
           depthWrite={false}
@@ -82,8 +82,8 @@ export function Hologram({ sceneRef }: { sceneRef: SceneRef }) {
           <mesh key={radius} rotation={[Math.PI / 2 + i * 0.22, 0, i * 0.4]}>
             <torusGeometry args={[radius, 0.012, 8, 64]} />
             <meshStandardMaterial
-              color="#a5c8ff"
-              emissive="#6425F5"
+              color="#F6D98B"
+              emissive="#E8B84A"
               transparent
               opacity={0}
               depthWrite={false}

@@ -9,6 +9,16 @@ export const SUBSCRIBER_STATUSES = [
 ] as const;
 export type SubscriberStatus = (typeof SUBSCRIBER_STATUSES)[number];
 
+export const DEPOSIT_STATUSES = ["none", "pending", "paid", "refunded"] as const;
+export type DepositStatus = (typeof DEPOSIT_STATUSES)[number];
+
+export const DEPOSIT_LABELS: Record<DepositStatus, string> = {
+  none: "No deposit",
+  pending: "Checkout started",
+  paid: "Deposit paid",
+  refunded: "Refunded",
+};
+
 export const PERSONAS = ["hardware", "mcp-sdk", "app-dev", "unspecified"] as const;
 export type Persona = (typeof PERSONAS)[number];
 
@@ -62,6 +72,7 @@ export type SubscriberSummary = {
   status: SubscriberStatus;
   confirmedAt: string | null;
   lastEmailedAt: string | null;
+  depositStatus: DepositStatus;
   createdAt: string;
 };
 

@@ -57,6 +57,7 @@ function toSummary(row: SubscriberRow): SubscriberSummary {
     status: row.status,
     confirmedAt: row.confirmed_at,
     lastEmailedAt: row.last_emailed_at,
+    depositStatus: row.deposit_status ?? "none",
     createdAt: row.created_at,
   };
 }

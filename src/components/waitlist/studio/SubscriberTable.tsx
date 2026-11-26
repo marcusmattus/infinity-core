@@ -5,6 +5,7 @@ import { ChevronRight, Loader2 } from "lucide-react";
 import { waitlistTimeline } from "@/lib/waitlist.functions";
 import {
   DEPLOYMENT_LABELS,
+  DEPOSIT_LABELS,
   PERSONA_LABELS,
   STATUS_LABELS,
   type SubscriberSummary,
@@ -74,6 +75,11 @@ export function SubscriberTable({ rows, token }: { rows: SubscriberSummary[]; to
               >
                 {STATUS_LABELS[row.status]}
               </span>
+              {row.depositStatus === "paid" && (
+                <span className="label-mono hidden shrink-0 rounded-full border border-gold px-2 py-0.5 text-[0.55rem] text-gold sm:block">
+                  Deposit
+                </span>
+              )}
               <span className="label-mono w-12 shrink-0 text-right text-steel">
                 {when(row.createdAt)}
               </span>
@@ -84,6 +90,7 @@ export function SubscriberTable({ rows, token }: { rows: SubscriberSummary[]; to
                 <dl className="grid gap-x-6 gap-y-3 bg-surface px-5 py-5 sm:grid-cols-2 sm:px-7">
                   {[
                     ["Status", STATUS_LABELS[row.status]],
+                    ["Deposit", DEPOSIT_LABELS[row.depositStatus]],
                     ["Persona", PERSONA_LABELS[row.persona]],
                     ["Deployment", row.deployment ? DEPLOYMENT_LABELS[row.deployment] : "—"],
                     ["Source", row.source],

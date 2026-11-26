@@ -94,7 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       // Tints the browser UI on mobile (Chrome/Android address bar, iOS PWA
       // status bar) to the same infinity black the page sits on.
-      { name: "theme-color", content: "#04060B" },
+      { name: "theme-color", content: "#09090B" },
       { name: "application-name", content: "InfinityID Labs" },
       { name: "apple-mobile-web-app-title", content: "InfinityID" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
@@ -118,7 +118,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
       { rel: "icon", href: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
-      { rel: "mask-icon", href: "/mask-icon.svg", color: "#2E73FC" },
+      { rel: "mask-icon", href: "/mask-icon.svg", color: "#E8B84A" },
       { rel: "manifest", href: "/site.webmanifest" },
     ],
   }),

@@ -34,12 +34,12 @@ function Confirmed() {
                 ]
               : [
                   { label: "Explore the HoloDock", href: "/holodock", primary: true },
-                  { label: "Start building", href: "/#build" },
+                  { label: "Start building", href: "/platform#build" },
                 ]
           }
         />
       </main>
-      <SiteFooter base="/" />
+      <SiteFooter base="/platform" />
     </div>
   );
 }

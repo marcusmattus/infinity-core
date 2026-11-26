@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 import { PageHeader } from "@/components/infinity/PageHeader";
 import { SiteFooter } from "@/components/infinity/SiteFooter";
 import { Reveal } from "@/components/infinity/Reveal";
@@ -6,9 +7,10 @@ import { WaitlistForm } from "@/components/waitlist/WaitlistForm";
 
 const TITLE = "Join the HoloDock waitlist — InfinityID Labs";
 const DESCRIPTION =
-  "Hear when the HoloDock dev kit, the SpatialOS SDK and the MCP Gateway open up. Double opt-in, no newsletter, unsubscribe in one click.";
+  "Hear when the HoloDock dev kit, the SpatialOS SDK and the MCP Gateway open up, and hold a unit from the first run with a refundable deposit. Double opt-in, unsubscribe in one click.";
 
 export const Route = createFileRoute("/waitlist/")({
+  validateSearch: z.object({ deposit: z.enum(["cancelled"]).optional() }),
   head: () => ({
     meta: [
       { title: TITLE },
@@ -27,6 +29,7 @@ const PROMISES: Array<[string, string]> = [
 ];
 
 function WaitlistPage() {
+  const { deposit } = Route.useSearch();
   return (
     <div className="min-h-screen bg-background">
       <PageHeader cta={{ label: "Explore the device", href: "/holodock" }} />
@@ -39,15 +42,22 @@ function WaitlistPage() {
           />
           <div className="shell relative py-20 sm:py-28">
             <Reveal>
-              <p className="label-mono text-electric">Waitlist</p>
+              {deposit === "cancelled" && (
+                <p className="mb-8 max-w-xl rounded-[14px] border border-graphite bg-carbon px-4 py-3 text-sm text-ash">
+                  Checkout was cancelled and no payment was taken. You're still on the waitlist —
+                  enter your email again below whenever you want to reserve.
+                </p>
+              )}
+              <p className="label-mono text-gold">Waitlist</p>
               <h1 className="display-tight mt-8 max-w-3xl text-[2.75rem] sm:text-[4rem]">
                 Hear it when
                 <br />
-                <span className="text-steel">it actually ships.</span>
+                <span className="text-gold">it actually ships.</span>
               </h1>
               <p className="mt-8 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground">
                 No drip sequence and no weekly newsletter. Three things get a mail: the dev kit, the
-                SDK, and the MCP Gateway opening up.
+                SDK, and the MCP Gateway opening up. Once you're on the list you can hold a unit
+                from the first run with a refundable deposit.
               </p>
             </Reveal>
 
@@ -79,7 +89,7 @@ function WaitlistPage() {
         </section>
       </main>
 
-      <SiteFooter base="/" />
+      <SiteFooter base="/platform" />
     </div>
   );
 }

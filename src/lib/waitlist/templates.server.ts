@@ -8,16 +8,17 @@ import { unsubscribeUrl } from "./config.server";
  *
  * Table layout and inline styles throughout: email clients strip <style>
  * blocks and ignore most of flexbox. The palette is the site's — near-black
- * ground, electric blue accent — with light-background fallbacks, since a
+ * ground, gold for the action, blue light for links — with light-background fallbacks, since a
  * handful of clients force a light theme regardless of what we ask for.
  */
 
-const BG = "#0a0e17";
-const PANEL = "#111725";
-const BORDER = "#222c3f";
-const TEXT = "#c3cada";
-const BRIGHT = "#f5f7fa";
-const ACCENT = "#7aa6ff";
+const BG = "#09090b"; // Void
+const PANEL = "#131317"; // Carbon
+const BORDER = "#26262c"; // Graphite
+const TEXT = "#a3a3ab"; // Ash — body on black
+const BRIGHT = "#fafaf7"; // White
+const ACCENT = "#5b8cff"; // Blue light — links
+const GOLD = "#e8b84a"; // the main action
 
 export type RenderedEmail = { subject: string; html: string; text: string };
 
@@ -40,8 +41,8 @@ function shell({
 }): string {
   const button = cta
     ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0 8px">
-         <tr><td style="background:#1677ff;border-radius:2px">
-           <a href="${cta.href}" style="display:inline-block;padding:13px 26px;font-size:14px;font-weight:600;color:#ffffff;text-decoration:none">${escapeHtml(
+         <tr><td style="background:${GOLD};border-radius:999px">
+           <a href="${cta.href}" style="display:inline-block;padding:13px 26px;font-size:14px;font-weight:600;color:${BG};text-decoration:none">${escapeHtml(
              cta.label,
            )}</a>
          </td></tr>
@@ -49,7 +50,7 @@ function shell({
     : "";
 
   const unsubscribe = unsubscribeHref
-    ? `<a href="${unsubscribeHref}" style="color:#6c7791;text-decoration:underline">Unsubscribe</a>`
+    ? `<a href="${unsubscribeHref}" style="color:#8b8b93;text-decoration:underline">Unsubscribe</a>`
     : "";
 
   const postal = config.postalAddress
@@ -85,7 +86,7 @@ function shell({
           </td>
         </tr>
         <tr>
-          <td style="padding:20px 32px 28px;border-top:1px solid ${BORDER};font-size:12px;line-height:1.6;color:#6c7791">
+          <td style="padding:20px 32px 28px;border-top:1px solid ${BORDER};font-size:12px;line-height:1.6;color:#8b8b93">
             ${footerNote ? `<div style="margin-bottom:8px">${escapeHtml(footerNote)}</div>` : ""}
             ${unsubscribe}
             ${postal}

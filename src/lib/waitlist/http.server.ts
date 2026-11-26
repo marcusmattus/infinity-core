@@ -7,6 +7,8 @@ import { applyProviderEvent, confirm, unsubscribe } from "./funnel.server";
  * The parts of the funnel that are reached from outside the app: confirmation
  * links, unsubscribe links, and the provider's webhook.
  *
+ * The Stripe deposit webhook (`/api/waitlist/stripe`) is served here too.
+ *
  * These cannot be server functions — those are POST-only and CSRF-guarded,
  * which is right for the browser and wrong for a link in an email client.
  * `src/server.ts` offers each request here first and falls through when the
@@ -79,6 +81,11 @@ export async function handleWaitlistRequest(request: Request): Promise<Response 
           result.ok ? "/waitlist/unsubscribed" : "/waitlist/unsubscribed?state=invalid",
         );
       }
+    }
+
+    if (action === "stripe" && request.method === "POST") {
+      const { handleStripeWebhook } = await import("./deposit.server");
+      return await handleStripeWebhook(request);
     }
 
     if (action === "webhook" && request.method === "POST") {
