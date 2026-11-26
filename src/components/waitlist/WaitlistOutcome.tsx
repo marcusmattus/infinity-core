@@ -32,7 +32,7 @@ export function WaitlistOutcome({
                   <a
                     key={action.label}
                     href={action.href}
-                    className={`px-5 py-3.5 text-sm font-semibold transition-colors ${
+                    className={`rounded-full px-5 py-3.5 text-sm font-semibold transition-colors ${
                       action.primary
                         ? "gradient-fill text-primary-foreground hover:opacity-90"
                         : "border border-border text-foreground hover:border-electric hover:text-electric"

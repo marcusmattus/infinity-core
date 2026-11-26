@@ -249,7 +249,7 @@ export function PartGeometry({ id, m }: { id: PartId; m: Materials }) {
           <mesh geometry={G.combinerBase} material={m.darkMetal} />
           {/* Combining element and its glow. */}
           <Cyl mat={m.glass} position={[0, 0.03, 0]} r={0.44} h={0.05} />
-          <Ring mat={m.violet} r={0.33} tube={0.035} y={0.03} />
+          <Ring mat={m.gold} r={0.33} tube={0.035} y={0.03} />
           <Cyl mat={m.cyan} position={[0, 0.034, 0]} r={0.2} h={0.012} />
           {/* 45° fold, the element that turns the path upward. */}
           <Box

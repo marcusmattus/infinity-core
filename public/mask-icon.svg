@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="InfinityID Labs">
-  <g transform="translate(11.5 121.2) scale(4.89)">
-    <path
-      d="M50 24c-7.4-11.6-13.6-17.4-22.6-17.4C18.4 6.6 11 14.4 11 24s7.4 17.4 16.4 17.4c9 0 15.2-5.8 22.6-17.4 7.4-11.6 13.6-17.4 22.6-17.4C81.6 6.6 89 14.4 89 24s-7.4 17.4-16.4 17.4c-9 0-15.2-5.8-22.6-17.4Z"
-      fill="none" stroke="#000" stroke-width="8" stroke-linecap="round"/>
+  <g transform="translate(6 140) scale(5)" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round">
+    <path d="M42.5 24C36.2 13.8 30.9 6.6 23.2 6.6 14 6.6 6.5 14.4 6.5 24s7.5 17.4 16.7 17.4c7.7 0 13-7.2 19.3-17.4Z"/>
+    <path d="M57.5 24c6.3-10.2 11.6-17.4 19.3-17.4 9.2 0 16.7 7.8 16.7 17.4s-7.5 17.4-16.7 17.4c-7.7 0-13-7.2-19.3-17.4Z"/>
   </g>
+  <path transform="translate(6 140) scale(5)" d="M50 11.5 53 21 62.5 24 53 27 50 36.5 47 27 37.5 24 47 21Z" fill="#000"/>
 </svg>

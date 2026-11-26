@@ -51,9 +51,9 @@ export function OpticalPath() {
       });
     return {
       source: make(HEX.cyan, 0.3),
-      combined: make(HEX.violet, 0.28),
+      combined: make(HEX.gold, 0.28),
       output: make(HEX.blue, 0.2),
-      pulse: make(0xdff1ff, 0.9),
+      pulse: make(0xfafaf7, 0.9),
     };
   }, []);
 

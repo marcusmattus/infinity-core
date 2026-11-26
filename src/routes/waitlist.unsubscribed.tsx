@@ -32,7 +32,7 @@ function Unsubscribed() {
           ]}
         />
       </main>
-      <SiteFooter base="/" />
+      <SiteFooter base="/platform" />
     </div>
   );
 }

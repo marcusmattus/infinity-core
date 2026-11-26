@@ -56,13 +56,13 @@ export type Part = {
 };
 
 export const SYSTEMS: Record<SystemId, { label: string; tint: string }> = {
-  enclosure: { label: "Enclosure", tint: "#9AA6B7" },
-  optical: { label: "Optical engine", tint: "#32C5FF" },
-  imaging: { label: "Imaging", tint: "#8B45FF" },
-  sensing: { label: "Spatial sensing", tint: "#368BFF" },
-  compute: { label: "Compute", tint: "#8B45FF" },
-  thermal: { label: "Thermal", tint: "#FF9B4A" },
-  power: { label: "Power", tint: "#4ADE9B" },
+  enclosure: { label: "Enclosure", tint: "#A3A3AB" },
+  optical: { label: "Optical engine", tint: "#5B8CFF" },
+  imaging: { label: "Imaging", tint: "#E8B84A" },
+  sensing: { label: "Spatial sensing", tint: "#2F6BFF" },
+  compute: { label: "Compute", tint: "#F6D98B" },
+  thermal: { label: "Thermal", tint: "#B9852A" },
+  power: { label: "Power", tint: "#D9D9DE" },
 };
 
 const STACK: Array<[PartId, number]> = [

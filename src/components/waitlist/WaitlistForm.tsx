@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Check, Loader2, Mail } from "lucide-react";
 import { joinWaitlist, type JoinWaitlistResult } from "@/lib/waitlist.functions";
+import { DepositStep } from "./DepositStep";
 import { PERSONA_LABELS, PERSONAS, type Persona } from "@/lib/waitlist/types";
 
 const OFFERED_PERSONAS = PERSONAS.filter((persona) => persona !== "unspecified");
@@ -47,9 +48,12 @@ function useArrivalContext() {
 export function WaitlistForm({
   source = "waitlist",
   askPersona = true,
+  withDeposit = true,
 }: {
   source?: "waitlist" | "holodock" | "footer";
   askPersona?: boolean;
+  /** Offer the refundable reservation deposit once the address is on the list. */
+  withDeposit?: boolean;
 }) {
   const [email, setEmail] = useState("");
   const [persona, setPersona] = useState<Persona | null>(null);
@@ -78,20 +82,24 @@ export function WaitlistForm({
 
   if (mutation.isSuccess) {
     return (
-      <div className="hairline bg-surface p-6 sm:p-8">
-        <p className="label-mono flex items-center gap-2 text-electric">
+      <div className="rounded-[22px] border border-graphite bg-carbon p-6 sm:p-8">
+        <p className="label-mono flex items-center gap-2 text-blue-light">
           <Check className="size-3.5" />
-          {mutation.data.state === "already_confirmed" ? "Already on the list" : "One more step"}
+          {mutation.data.state === "already_confirmed"
+            ? "Already on the list"
+            : "You're on the list"}
         </p>
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-          {RESULT_COPY[mutation.data.state]}
-        </p>
+        <p className="mt-4 text-sm leading-relaxed text-ash">{RESULT_COPY[mutation.data.state]}</p>
+        {withDeposit && mutation.data.state !== "blocked" && <DepositStep email={email.trim()} />}
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="hairline bg-surface p-6 sm:p-8">
+    <form
+      onSubmit={onSubmit}
+      className="rounded-[22px] border border-graphite bg-carbon p-6 sm:p-8"
+    >
       {askPersona && (
         <fieldset>
           <legend className="label-mono text-steel">What brings you here</legend>
@@ -102,10 +110,10 @@ export function WaitlistForm({
                 type="button"
                 onClick={() => setPersona(persona === option ? null : option)}
                 aria-pressed={persona === option}
-                className={`border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                className={`rounded-[8px] border px-4 py-2.5 text-sm font-semibold transition-colors ${
                   persona === option
-                    ? "gradient-fill border-transparent text-primary-foreground"
-                    : "border-border text-muted-foreground hover:border-border-strong hover:text-foreground"
+                    ? "border-blue-light bg-blue-deep text-white"
+                    : "border-graphite text-ash hover:border-border-strong hover:text-white"
                 }`}
               >
                 {PERSONA_LABELS[option]}
@@ -129,12 +137,12 @@ export function WaitlistForm({
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             placeholder="you@studio.dev"
-            className="h-12 w-full border border-input bg-background px-4 font-mono text-sm outline-none focus:border-electric"
+            className="h-12 w-full rounded-[14px] border border-graphite bg-void px-4 font-mono text-sm outline-none focus:border-blue-light"
           />
           <button
             type="submit"
             disabled={!ready || mutation.isPending}
-            className="gradient-fill flex h-12 shrink-0 items-center justify-center gap-2 px-6 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-40"
+            className="flex h-12 shrink-0 items-center justify-center gap-2 rounded-[14px] bg-gold px-6 text-sm font-semibold text-void transition-colors hover:bg-gold-light disabled:opacity-40"
           >
             {mutation.isPending ? (
               <Loader2 className="size-4 animate-spin" />

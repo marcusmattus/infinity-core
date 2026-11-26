@@ -61,6 +61,63 @@ export const joinWaitlist = createServerFn({ method: "POST" })
     }
   });
 
+/* ------------------------------------------------------------------ deposit */
+
+export type DepositOffer = { open: boolean; label: string };
+
+/** The deposit price for the page, read from the same env the charge uses. */
+export const getDepositOffer = createServerFn({ method: "GET" }).handler(
+  async (): Promise<DepositOffer> => {
+    const { depositConfig } = await import("./waitlist/deposit.server");
+    const config = depositConfig();
+    return { open: config.open, label: config.label };
+  },
+);
+
+export type StartDepositResult =
+  | { state: "checkout"; url: string }
+  | { state: "already_paid" }
+  | { state: "not_on_list" }
+  | { state: "closed" };
+
+export const startWaitlistDeposit = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => z.object({ email: z.string().email().max(320) }).parse(input))
+  .handler(async ({ data }): Promise<StartDepositResult> => {
+    const { startDeposit } = await import("./waitlist/deposit.server");
+    try {
+      return await startDeposit(data.email);
+    } catch (error) {
+      console.error("[waitlist] deposit failed:", error instanceof Error ? error.message : error);
+      throw new Error(
+        "We couldn't start checkout just now. No payment was taken — try again in a minute.",
+      );
+    }
+  });
+
+export const getDepositSession = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) =>
+    z
+      .object({
+        sessionId: z
+          .string()
+          .regex(/^cs_[A-Za-z0-9_]+$/)
+          .max(200),
+      })
+      .parse(input),
+  )
+  .handler(async ({ data }) => {
+    const { depositSessionStatus } = await import("./waitlist/deposit.server");
+    try {
+      return await depositSessionStatus(data.sessionId);
+    } catch (error) {
+      console.error(
+        "[waitlist] deposit lookup failed:",
+        error instanceof Error ? error.message : error,
+      );
+      return { paid: false, label: null, email: null };
+    }
+  });
+
 /* -------------------------------------------------------------------- admin */
 
 const tokenSchema = z.string().min(24).max(200);

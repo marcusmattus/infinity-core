@@ -28,25 +28,25 @@ const systems = [
   {
     name: "SpatialOS",
     body: "The operating layer that claims the dock, composes the scene and renders every frame it projects.",
-    href: "/#spatialos",
+    href: "/platform#spatialos",
   },
   {
     name: "MCP Gateway",
     body: "Your own servers, exposed as tools the Agent Kernel can call — scoped, audited and revocable.",
-    href: "/#mcp-gateway",
+    href: "/platform#mcp-gateway",
   },
   {
     name: "Openware",
     body: "A declared plugin model that gives an app you already ship a spatial surface on any paired dock.",
-    href: "/#openware",
+    href: "/platform#openware",
   },
 ];
 
 const ctas = [
-  { label: "Start building", href: "/#build", primary: true },
-  { label: "Connect MCP server", href: "/#mcp-gateway", primary: false },
-  { label: "Request dev kit", href: "/#access", primary: false },
-  { label: "Join waitlist", href: "/#access", primary: false },
+  { label: "Start building", href: "/platform#build", primary: true },
+  { label: "Connect MCP server", href: "/platform#mcp-gateway", primary: false },
+  { label: "Request dev kit", href: "/platform#access", primary: false },
+  { label: "Join waitlist", href: "/waitlist", primary: false },
 ];
 
 function HoloDockPage() {
@@ -64,7 +64,7 @@ function HoloDockPage() {
           <div className="shell relative py-20 sm:py-28">
             <Reveal>
               <a
-                href="/#device"
+                href="/platform#device"
                 className="label-mono inline-flex items-center gap-2 text-steel transition-colors hover:text-electric"
               >
                 <ArrowLeft className="size-3.5" />
@@ -186,7 +186,7 @@ function HoloDockPage() {
         </section>
       </main>
 
-      <SiteFooter base="/" />
+      <SiteFooter base="/platform" />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import "@tanstack/react-start/server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import type { Deployment, EventDetail, Persona, SubscriberStatus } from "./types";
+import type { DepositStatus, Deployment, EventDetail, Persona, SubscriberStatus } from "./types";
 
 /**
  * Hand-written row types for the four waitlist tables.
@@ -30,6 +30,14 @@ export type SubscriberRow = {
   utm: Record<string, string>;
   referrer: string | null;
   access_key: string | null;
+  deposit_status: DepositStatus;
+  /** Minor units (pence), as Stripe reports them. */
+  deposit_amount: number | null;
+  deposit_currency: string | null;
+  deposit_paid_at: string | null;
+  stripe_checkout_session_id: string | null;
+  stripe_payment_intent_id: string | null;
+  stripe_customer_id: string | null;
   created_at: string;
   updated_at: string;
 };

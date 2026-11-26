@@ -16,7 +16,7 @@ function screenTexture() {
   element.height = SIZE;
   const ctx = element.getContext("2d")!;
 
-  ctx.fillStyle = "#04080f";
+  ctx.fillStyle = "#09090B";
   ctx.fillRect(0, 0, SIZE, SIZE);
 
   const glow = ctx.createLinearGradient(0, 0, 0, SIZE);
@@ -65,14 +65,14 @@ function panelTexture(title: string, lines: string[]) {
   ctx.strokeStyle = "rgba(50,197,255,0.5)";
   ctx.lineWidth = 3;
   ctx.strokeRect(2, 2, W - 4, H - 4);
-  ctx.fillStyle = "#32C5FF";
+  ctx.fillStyle = "#5B8CFF";
   ctx.fillRect(2, 2, 6, H - 4);
 
-  ctx.fillStyle = "#F5F7FB";
+  ctx.fillStyle = "#FAFAF7";
   ctx.font = "600 32px ui-sans-serif, system-ui, sans-serif";
   ctx.fillText(title, 32, 62);
   ctx.font = "22px ui-monospace, monospace";
-  ctx.fillStyle = "#9AA6B7";
+  ctx.fillStyle = "#A3A3AB";
   lines.forEach((line, i) => ctx.fillText(line, 32, 112 + i * 36));
 
   const texture = new THREE.CanvasTexture(element);
@@ -135,7 +135,7 @@ export function SpatialScene() {
 
   const assets = useMemo(() => {
     const body = new THREE.MeshStandardMaterial({
-      color: 0x0d1016,
+      color: 0x131317,
       metalness: 0.85,
       roughness: 0.4,
     });
@@ -197,7 +197,7 @@ export function SpatialScene() {
       }),
       figureMaterial: additive(HEX.cyan, 0),
       figureEdge: new THREE.MeshBasicMaterial({
-        color: new THREE.Color(0xdff1ff),
+        color: new THREE.Color(0xfafaf7),
         wireframe: true,
         transparent: true,
         opacity: 0,
@@ -205,7 +205,7 @@ export function SpatialScene() {
         depthWrite: false,
         toneMapped: false,
       }),
-      anchorMaterial: additive(HEX.violet, 0),
+      anchorMaterial: additive(HEX.gold, 0),
       gestureMaterial: additive(HEX.cyan, 0),
       depthMaterial: new THREE.PointsMaterial({
         color: new THREE.Color(HEX.blue),

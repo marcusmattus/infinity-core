@@ -7,13 +7,17 @@
 /*
  * InfinityID Labs — design system.
  *
- * Structural language: a strict editorial grid, hairline rules, oversized
- * tight-tracked display type, uppercase mono index labels, and signal/data-flow
- * motifs drawn as line art. Everything is rectilinear; the only curves belong to
- * the infinity mark and the holographic field it projects.
+ * Black stage. Gold voice. Blue action.
  *
- * Colour: ~70% neutral (infinity black → interface white), ~20% the logo's
- * electric-blue → violet gradient, ~10% holographic glow. All values are oklch.
+ * Four colour families, used roughly 60 / 20 / 12 / 8:
+ *   Black  Void #09090B (ground) · Carbon #131317 (cards) · Graphite #26262C (lines)
+ *   White  #FAFAF7 (visor, text) · Mist #D9D9DE (shade) · Ash #A3A3AB (body on black)
+ *   Gold   light #F6D98B (spark) · #E8B84A (10.8:1 on black) · deep #B9852A (facet)
+ *   Blue   light #5B8CFF (text on black) · #2F6BFF (fills only) · deep #1B45C9 (white 7.3:1)
+ *
+ * Gold marks the agent and the main action. Blue is for links, selection and
+ * anything live. Never gold and blue in one gradient — they meet only on a
+ * hard edge, as in the infinity mark.
  */
 
 @theme inline {
@@ -49,6 +53,18 @@
   --color-electric: var(--electric);
   --color-violet: var(--violet);
   --color-steel: var(--steel);
+  --color-void: var(--void);
+  --color-carbon: var(--carbon);
+  --color-graphite: var(--graphite);
+  --color-white: var(--white);
+  --color-mist: var(--mist);
+  --color-ash: var(--ash);
+  --color-gold-light: var(--gold-light);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-blue-light: var(--blue-light);
+  --color-blue: var(--blue);
+  --color-blue-deep: var(--blue-deep);
   --color-grid: var(--grid);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -66,64 +82,84 @@
 }
 
 :root {
-  /* Rectilinear by default — the grid does the work, not the corners. */
-  --radius: 0.125rem;
+  /* Controls are 14px; cards and chips set their own radius (22 / 8). */
+  --radius: 0.875rem;
 
-  --background: oklch(0.115 0.013 264);
-  --foreground: oklch(0.98 0.003 264);
-  --surface: oklch(0.148 0.015 264);
-  --elevated: oklch(0.185 0.017 264);
+  /* ---- palette ---- */
+  --void: #09090b;
+  --carbon: #131317;
+  --graphite: #26262c;
+  --white: #fafaf7;
+  --mist: #d9d9de;
+  --ash: #a3a3ab;
+  --gold-light: #f6d98b;
+  --gold: #e8b84a;
+  --gold-deep: #b9852a;
+  --blue-light: #5b8cff;
+  --blue: #2f6bff;
+  --blue-deep: #1b45c9;
 
-  --card: oklch(0.148 0.015 264);
-  --card-foreground: oklch(0.98 0.003 264);
-  --popover: oklch(0.148 0.015 264);
-  --popover-foreground: oklch(0.98 0.003 264);
+  /* ---- semantic ---- */
+  --background: var(--void);
+  --foreground: var(--white);
+  --surface: var(--carbon);
+  --elevated: #1a1a1f;
 
-  /* Logo gradient endpoints: #1677FF → #6425F5 */
-  --electric: oklch(0.593 0.216 262);
-  --violet: oklch(0.469 0.264 288);
-  --steel: oklch(0.55 0.021 264);
+  --card: var(--carbon);
+  --card-foreground: var(--white);
+  --popover: var(--carbon);
+  --popover-foreground: var(--white);
 
-  --primary: oklch(0.593 0.216 262);
-  --primary-foreground: oklch(0.99 0.002 264);
-  --secondary: oklch(0.205 0.018 264);
-  --secondary-foreground: oklch(0.98 0.003 264);
-  --muted: oklch(0.185 0.017 264);
-  --muted-foreground: oklch(0.665 0.019 264);
-  --accent: oklch(0.469 0.264 288);
-  --accent-foreground: oklch(0.99 0.002 264);
+  /* `electric` is the live/link colour across the older sections: Blue light,
+     the one blue that reads as text on black. `violet` folds into Blue deep. */
+  --electric: var(--blue-light);
+  --violet: var(--blue-deep);
+  --steel: color-mix(in oklab, var(--ash) 82%, var(--void));
+
+  --primary: var(--gold);
+  --primary-foreground: var(--void);
+  --secondary: var(--graphite);
+  --secondary-foreground: var(--white);
+  --muted: #1a1a1f;
+  --muted-foreground: var(--ash);
+  --accent: var(--blue-deep);
+  --accent-foreground: var(--white);
   --destructive: oklch(0.62 0.21 25);
   --destructive-foreground: oklch(0.98 0.01 25);
 
-  --border: oklch(0.253 0.017 264);
-  --border-strong: oklch(0.345 0.021 264);
-  --grid: oklch(0.215 0.016 264);
-  --input: oklch(0.253 0.017 264);
-  --ring: oklch(0.593 0.216 262);
+  --border: var(--graphite);
+  --border-strong: #3a3a42;
+  --grid: #18181d;
+  --input: var(--graphite);
+  --ring: var(--blue-light);
 
-  --chart-1: oklch(0.593 0.216 262);
-  --chart-2: oklch(0.469 0.264 288);
-  --chart-3: oklch(0.75 0.12 220);
-  --chart-4: oklch(0.68 0.16 300);
-  --chart-5: oklch(0.85 0.05 264);
+  --chart-1: var(--gold);
+  --chart-2: var(--blue-light);
+  --chart-3: var(--mist);
+  --chart-4: var(--gold-deep);
+  --chart-5: var(--blue-deep);
 
-  --sidebar: oklch(0.148 0.015 264);
-  --sidebar-foreground: oklch(0.98 0.003 264);
-  --sidebar-primary: oklch(0.593 0.216 262);
-  --sidebar-primary-foreground: oklch(0.99 0.002 264);
-  --sidebar-accent: oklch(0.205 0.018 264);
-  --sidebar-accent-foreground: oklch(0.98 0.003 264);
-  --sidebar-border: oklch(0.253 0.017 264);
-  --sidebar-ring: oklch(0.593 0.216 262);
+  --sidebar: var(--carbon);
+  --sidebar-foreground: var(--white);
+  --sidebar-primary: var(--gold);
+  --sidebar-primary-foreground: var(--void);
+  --sidebar-accent: var(--graphite);
+  --sidebar-accent-foreground: var(--white);
+  --sidebar-border: var(--graphite);
+  --sidebar-ring: var(--blue-light);
 
-  --gradient-infinity: linear-gradient(104deg, var(--electric), var(--violet));
+  /* Single-hue ramps only. There is deliberately no gold→blue gradient. */
+  --gradient-gold: linear-gradient(104deg, var(--gold-light), var(--gold));
+  --gradient-blue: linear-gradient(104deg, var(--blue), var(--blue-light));
+  --gradient-infinity: var(--gradient-gold);
   --shell: 1560px;
+  --shell-brand: 1240px;
   --gutter: 1.25rem;
 }
 
 .dark {
-  --background: oklch(0.115 0.013 264);
-  --foreground: oklch(0.98 0.003 264);
+  --background: var(--void);
+  --foreground: var(--white);
 }
 
 @layer base {
@@ -170,9 +206,9 @@
 
 @utility display-tight {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
 }
 
 @utility gradient-text {
@@ -181,8 +217,16 @@
   color: transparent;
 }
 
+/* The main action: flat gold with void text. */
 @utility gradient-fill {
-  background-image: var(--gradient-infinity);
+  background-color: var(--color-gold);
+  color: var(--color-void);
+}
+
+@utility gold-text {
+  background-image: var(--gradient-gold);
+  background-clip: text;
+  color: transparent;
 }
 
 /* -------------------------------------------------------------------- layout */
@@ -190,6 +234,13 @@
 @utility shell {
   margin-inline: auto;
   max-width: var(--shell);
+  padding-inline: var(--gutter);
+}
+
+/* The landing's narrower measure, matching the brand mockups. */
+@utility shell-brand {
+  margin-inline: auto;
+  max-width: var(--shell-brand);
   padding-inline: var(--gutter);
 }
 
@@ -237,7 +288,7 @@
     ),
     radial-gradient(
       42% 44% at 66% 60%,
-      color-mix(in oklab, var(--color-violet) 40%, transparent),
+      color-mix(in oklab, var(--color-blue-deep) 40%, transparent),
       transparent 72%
     );
   filter: blur(56px);

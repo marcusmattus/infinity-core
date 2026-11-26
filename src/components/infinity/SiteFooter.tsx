@@ -1,10 +1,11 @@
 import { InfinityMark, Wordmark } from "./Wordmark";
+import { CONTACT_MAILTO, SITE } from "@/lib/site";
 
 const columns: Array<{ title: string; items: Array<{ label: string; href: string }> }> = [
   {
     title: "Device",
     items: [
-      { label: "HoloDock", href: "#device" },
+      { label: "HoloDock", href: "/holodock" },
       { label: "Interactive teardown", href: "/holodock" },
       { label: "Specifications", href: "#device" },
       { label: "Optical modules", href: "#device" },
@@ -29,6 +30,8 @@ const columns: Array<{ title: string; items: Array<{ label: string; href: string
   {
     title: "Company",
     items: [
+      { label: "Home", href: "/" },
+      { label: "Waitlist & deposit", href: "/waitlist" },
       { label: "Principles", href: "#pillars" },
       { label: "The gap", href: "#thesis" },
       { label: "Voice interface", href: "#voice" },
@@ -84,8 +87,13 @@ export function SiteFooter({ base = "" }: { base?: string }) {
         </div>
 
         <div className="mt-16 flex flex-col gap-3 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="label-mono text-steel">© {new Date().getFullYear()} InfinityID Labs</p>
-          <p className="label-mono text-steel">Human · Intelligence · Security</p>
+          <p className="text-xs text-ash">
+            © {new Date().getFullYear()} {SITE.legalName} · Company no. {SITE.companyNumber} ·{" "}
+            {SITE.jurisdiction}
+          </p>
+          <a href={CONTACT_MAILTO} className="text-xs text-blue-light hover:underline">
+            {SITE.contactEmail}
+          </a>
         </div>
       </div>
     </footer>

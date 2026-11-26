@@ -34,7 +34,7 @@ function inline(escaped: string, linkColor: string): string {
       if (!href) return text;
       return `<a href="${href}" style="color:${linkColor};text-decoration:underline">${text}</a>`;
     })
-    .replace(/\*\*([^*]+)\*\*/g, '<strong style="color:#f5f7fa">$1</strong>');
+    .replace(/\*\*([^*]+)\*\*/g, '<strong style="color:#fafaf7">$1</strong>');
 }
 
 type Block =
@@ -88,24 +88,24 @@ export function parseBlocks(body: string): Block[] {
   return blocks;
 }
 
-export function renderBodyHtml(body: string, linkColor = "#7aa6ff"): string {
+export function renderBodyHtml(body: string, linkColor = "#5b8cff"): string {
   return parseBlocks(body)
     .map((block) => {
       switch (block.kind) {
         case "heading":
-          return `<h2 style="margin:32px 0 12px;font-size:18px;line-height:1.3;font-weight:600;color:#f5f7fa">${inline(
+          return `<h2 style="margin:32px 0 12px;font-size:18px;line-height:1.3;font-weight:600;color:#fafaf7">${inline(
             escapeHtml(block.text),
             linkColor,
           )}</h2>`;
         case "list":
-          return `<ul style="margin:0 0 18px;padding-left:20px;color:#c3cada">${block.items
+          return `<ul style="margin:0 0 18px;padding-left:20px;color:#a3a3ab">${block.items
             .map(
               (item) =>
                 `<li style="margin:0 0 8px;line-height:1.6">${inline(escapeHtml(item), linkColor)}</li>`,
             )
             .join("")}</ul>`;
         case "paragraph":
-          return `<p style="margin:0 0 18px;font-size:15px;line-height:1.65;color:#c3cada">${inline(
+          return `<p style="margin:0 0 18px;font-size:15px;line-height:1.65;color:#a3a3ab">${inline(
             escapeHtml(block.text),
             linkColor,
           )}</p>`;

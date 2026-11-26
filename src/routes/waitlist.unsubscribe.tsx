@@ -52,7 +52,7 @@ function Unsubscribe() {
           )}
         </WaitlistOutcome>
       </main>
-      <SiteFooter base="/" />
+      <SiteFooter base="/platform" />
     </div>
   );
 }

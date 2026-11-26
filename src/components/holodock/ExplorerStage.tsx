@@ -276,11 +276,11 @@ export default function Stage({ maxDpr }: StageProps) {
         <StudioEnvironment />
 
         <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 9, 5]} intensity={2.2} color="#f2f6ff" />
-        <directionalLight position={[-6, 4, 6]} intensity={1.2} color="#dde6f7" />
-        <directionalLight position={[0, -6, -4]} intensity={0.5} color="#8ab4ff" />
+        <directionalLight position={[5, 9, 5]} intensity={2.2} color="#FAFAF7" />
+        <directionalLight position={[-6, 4, 6]} intensity={1.2} color="#D9D9DE" />
+        <directionalLight position={[0, -6, -4]} intensity={0.5} color="#5B8CFF" />
         <pointLight position={[-6, 3, 5]} intensity={7} color={HEX.blue} distance={26} />
-        <pointLight position={[4.5, -2.5, -4]} intensity={6} color={HEX.violet} distance={20} />
+        <pointLight position={[4.5, -2.5, -4]} intensity={6} color={HEX.gold} distance={20} />
         <InternalGlow />
 
         <Assembly />
